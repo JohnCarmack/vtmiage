@@ -1,2 +1,3 @@
 # vtmiage
-modifi� par quentin
+modifié par quentin
+modifié par Faouzyx
