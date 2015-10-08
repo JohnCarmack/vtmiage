@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>UML MAKER</title>
+  
+  <link rel="stylesheet" type="text/css" href="UMLmaker.css">
+
+  
+  <!-- JointJs -->
+  <script src="joint.js"></script>
+  <script src="joint.shapes.js"></script>
+  <link rel="stylesheet" type="text/css" href="joint.css"/>
+  
+     
+  <!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap-theme.min.css"/>
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+  <header>
+	<h1>UML MAKER</h1>
+	<nav id="headerNav">
+	<button type="button" class="btn btn-default" aria-label="Ouvrir">
+		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Enregistrer">
+		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Supprimer">
+		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	</button>
+	<div id="admin" class="btn-group" role="group" aria-label="admin">
+	<button type="button" class="btn btn-default" aria-label="Paramètres">
+		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Connexion">
+		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+	</button>
+	</div>
+	<div id="zoom" class="btn-group" role="group" aria-label="zoom">
+	<button type="button" class="btn btn-default" aria-label="zoom">
+		<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="zoom">
+		<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+	</button>
+	</div>
+	</nav>
+  </header>
+  
+  <nav id="bodyNav">
+  <div id="diagrammes" class="btn-group-vertical" role="group" aria-label="diagrammes">
+		<a href="UMLmakerClasse.html" type="button" class="btn btn-default" role="button">Diagramme de classe
+		<span class = "caret"></span></a>			
+		<a type="button" class="btn btn-default">Diagramme d'états
+		<span  class = "caret"></span></a>
+			<div id="paper-menu-etats" class="paper">
+				<script src="menu-etats.js"></script>
+			</div>
+		<a href="UMLmakerCas.html" type="button" class="btn btn-default">Diagramme de cas d'utilisation
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerSequence.html" type="button" class="btn btn-default">Diagramme de séquence
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerActivite.html" type="button" class="btn btn-default">Diagramme d'activités
+		<span  class = "caret"></span></a>
+	</div>
+  </nav>
+  <section>
+	<div id="paper-etats" class="paper">
+	</div>
+	 <script src="etats.js"></script>
+	  <aside>
+
+  </aside> 
+ </section>
+
+  <footer>
+
+  </footer> 
+</body>
+</html>

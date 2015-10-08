@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>UML MAKER</title>
+  
+  <link rel="stylesheet" type="text/css" href="UMLmaker.css">
+<script src="js.js"></script>
+  
+  <!-- JointJs -->
+  <script src="joint.js"></script>
+  <script src="joint.shapes.js"></script>
+  <link rel="stylesheet" type="text/css" href="joint.css"/>
+  
+     
+  <!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap-theme.min.css"/>
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+<body>
+  <header>
+	<h1>UML MAKER</h1>
+	<!-- Menu de navigation -->
+	<nav id="headerNav">
+	<!-- Bouton pour ouvrir un diagramme -->
+	<button type="button" class="btn btn-default" aria-label="Ouvrir">
+		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Enregistrer">
+		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Supprimer" onclick="supprimerAll()">
+		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	</button>
+	<div id="zoom" class="btn-group" role="group" aria-label="zoom">
+	<button type="button" class="btn btn-default" aria-label="zoom" onclick="zoomIn()">
+		<span class="glyphicon glyphicon-zoom-in" aria-hidden="true" ></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="zoom" onclick="zoomOut()">
+		<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+	</button>
+	</div>
+	
+	<div id="admin" class="form-inline" role="group" aria-label="admin">
+	<div id="mail" class="input-group">
+	<span class="input-group-addon" id="basic-addon1">@</span>
+		<input type="email" class="form-control" placeholder="Mail" aria-describedby="basic-addon1">
+	</div>
+	<input id="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+	
+	<button type="submit" class="btn btn-default">Sign In</button>
+	<!--<button type="button" class="btn btn-default" aria-label="Paramètres">
+		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Connexion">
+		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+	</button>-->
+	</div>
+	
+	</nav>
+  </header>
+  
+  <nav id="bodyNav">
+  <div id="diagrammes" class="btn-group-vertical" role="group" aria-label="diagrammes">
+		<a type="button" class="btn btn-default" role="button">Diagramme de classe
+		<span class = "caret"></span></a>
+			<div id="paper-menu-class" class="paper" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<!--<script src="menu-classe.js"></script>-->
+			</div>			
+		<a href="UMLmakerEtats.html" type="button" class="btn btn-default">Diagramme d'états
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerCas.html" type="button" class="btn btn-default">Diagramme de cas d'utilisation
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerSequence.html" type="button" class="btn btn-default">Diagramme de séquence
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerActivite.html" type="button" class="btn btn-default">Diagramme d'activités
+		<span  class = "caret"></span></a>
+	</div>
+  </nav>
+  <section>
+	<div id="paper-class" class="paper">
+	</div>
+
+		<aside>
+		<form id="propriete">
+		<div class="form-group">
+				<label id="supprimerElement" for="supprimer">Supprimer:</label>
+				<button type="button" class="btn btn-default btn-xs" aria-label="Ajouter" onclick="SupprimerElement()">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="form-group">
+				<label for="Nom">Nom</label>
+				<input type="text" class="form-control  input-sm" id="Nom" onchange="InputName()">
+			</div>
+			<div class="form-group">
+				<label id="labelAttributs" for="attribut">Attributs</label>
+				<!--<input type="text" class="form-control  input-sm" id="attribut" onblur="InputAttribut()">-->
+				<button type="button" class="btn btn-default btn-xs" aria-label="Ajouter" onclick="InputVideA()">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="form-group">
+				<label id="labelMethodes" for="methodes">Méthodes</label>
+				<!--<input type="text" class="form-control  input-sm" id="methodes">-->
+				<button type="button" class="btn btn-default btn-xs" aria-label="Ajouter" onclick="InputVideM()">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="form-group">
+				<label for="couleur">Changer la couleur de fond</label>
+				<input type="color" id="couleurFond" onchange="InputCouleurFond()">
+			</div>
+			<div class="form-group">
+				<label for="couleur">Changer la couleur de la bordure</label>
+				<input type="color" id="couleurBordure" onchange="InputCouleurBordure()">
+			</div>
+			<div class="form-group">
+				<label for="couleur">Changer la couleur de police</label>
+				<input type="color" id="couleurPolice" onchange="InputCouleurPolice()">
+			</div>
+		</form>
+		</aside>
+	<div id="mini-paper" class="paper">
+	</div>
+	
+		 <script src="classe.js"></script>
+ </section>
+
+  <footer>
+
+  </footer> 
+</body>
+</html>

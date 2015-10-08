@@ -1,0 +1,333 @@
+{
+  "cells": [
+    {
+      "type": "uml.StartState",
+      "size": {
+        "width": 30,
+        "height": 30
+      },
+      "position": {
+        "x": 500,
+        "y": 20
+      },
+      "angle": 0,
+      "id": "73f5ae7e-c60a-4a36-98af-a2c5ec300418",
+      "z": 1,
+      "attrs": {}
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 475,
+        "y": 100
+      },
+      "size": {
+        "width": 75,
+        "height": 50
+      },
+      "angle": 0,
+      "id": "d615a0ae-8655-4249-8e9f-7e4748b6a4aa",
+      "z": 2,
+      "attrs": {
+        "rect": {
+          "fill": "white"
+        },
+        "text": {
+          "text": "Enregistrer commande"
+        }
+      }
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 475,
+        "y": 200
+      },
+      "size": {
+        "width": 75,
+        "height": 50
+      },
+      "angle": 0,
+      "id": "11b7fec1-5f68-4c8e-b893-8f887a97e536",
+      "z": 3,
+      "attrs": {
+        "rect": {
+          "fill": "white"
+        },
+        "text": {
+          "text": "calculer total"
+        }
+      }
+    },
+    {
+      "type": "basic.Path",
+      "size": {
+        "width": 50,
+        "height": 50
+      },
+      "position": {
+        "x": 485,
+        "y": 300
+      },
+      "angle": 0,
+      "id": "8207688b-44f0-4492-b962-ac00d49af1b6",
+      "z": 4,
+      "attrs": {
+        "path": {
+          "d": "M 30 0 L 60 30 30 60 0 30 z"
+        }
+      }
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 650,
+        "y": 300
+      },
+      "size": {
+        "width": 75,
+        "height": 50
+      },
+      "angle": 0,
+      "id": "b44abc21-0ba6-484d-94d7-7cbe6c1eec0e",
+      "z": 5,
+      "attrs": {
+        "rect": {
+          "fill": "white"
+        },
+        "text": {
+          "text": "Demander au responsable"
+        }
+      }
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 350,
+        "y": 400
+      },
+      "size": {
+        "width": 75,
+        "height": 50
+      },
+      "angle": 0,
+      "id": "54b775be-cc62-40dc-851f-23aa430788a3",
+      "z": 6,
+      "attrs": {
+        "rect": {
+          "fill": "white"
+        },
+        "text": {
+          "text": "Expedier le produit"
+        }
+      }
+    },
+    {
+      "type": "basic.Path",
+      "size": {
+        "width": 50,
+        "height": 50
+      },
+      "position": {
+        "x": 485,
+        "y": 400
+      },
+      "angle": 0,
+      "id": "9d602a08-14ec-4366-b2c8-ec55e1347b97",
+      "z": 7,
+      "attrs": {
+        "path": {
+          "d": "M 30 0 L 60 30 30 60 0 30 z"
+        }
+      }
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 600,
+        "y": 400
+      },
+      "size": {
+        "width": 75,
+        "height": 50
+      },
+      "angle": 0,
+      "id": "81a507bb-15b2-4558-a4bd-cb032406c7b8",
+      "z": 8,
+      "attrs": {
+        "rect": {
+          "fill": "white"
+        },
+        "text": {
+          "text": "envoyer courrier"
+        }
+      }
+    },
+    {
+      "type": "basic.Rect",
+      "position": {
+        "x": 475,
+        "y": 500
+      },
+      "size": {
+        "width": 90,
+        "height": 10
+      },
+      "angle": 0,
+      "id": "8844d0c6-33fc-47bc-86a0-8d3bb1058184",
+      "z": 9,
+      "attrs": {
+        "rect": {
+          "fill": "black"
+        }
+      }
+    },
+    {
+      "type": "uml.EndState",
+      "size": {
+        "width": 30,
+        "height": 30
+      },
+      "position": {
+        "x": 500,
+        "y": 600
+      },
+      "angle": 0,
+      "id": "632a8e24-daa7-49fa-b077-83b815b0a133",
+      "z": 10,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "73f5ae7e-c60a-4a36-98af-a2c5ec300418"
+      },
+      "target": {
+        "id": "d615a0ae-8655-4249-8e9f-7e4748b6a4aa"
+      },
+      "id": "54c3bdb2-be7a-4e61-a396-3aae5e4d7926",
+      "z": 11,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "d615a0ae-8655-4249-8e9f-7e4748b6a4aa"
+      },
+      "target": {
+        "id": "11b7fec1-5f68-4c8e-b893-8f887a97e536"
+      },
+      "id": "8756a715-fac3-40eb-8e78-7a7f7890403e",
+      "z": 12,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "11b7fec1-5f68-4c8e-b893-8f887a97e536"
+      },
+      "target": {
+        "id": "8207688b-44f0-4492-b962-ac00d49af1b6"
+      },
+      "id": "80e900d7-d691-4877-8ffb-62c7189d64e2",
+      "z": 13,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "8207688b-44f0-4492-b962-ac00d49af1b6"
+      },
+      "target": {
+        "id": "b44abc21-0ba6-484d-94d7-7cbe6c1eec0e"
+      },
+      "id": "00cf0669-c74f-42da-a8b8-49000b35607a",
+      "z": 14,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "8207688b-44f0-4492-b962-ac00d49af1b6"
+      },
+      "target": {
+        "id": "54b775be-cc62-40dc-851f-23aa430788a3"
+      },
+      "id": "4fe67f5e-035a-4b68-bd42-617c57b94c31",
+      "z": 15,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "54b775be-cc62-40dc-851f-23aa430788a3"
+      },
+      "target": {
+        "id": "8844d0c6-33fc-47bc-86a0-8d3bb1058184"
+      },
+      "id": "0ca5989d-a818-4e94-9d31-1f8322fca741",
+      "z": 16,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "b44abc21-0ba6-484d-94d7-7cbe6c1eec0e"
+      },
+      "target": {
+        "id": "9d602a08-14ec-4366-b2c8-ec55e1347b97"
+      },
+      "id": "22507431-adb0-49b4-85e7-784b4e4d253d",
+      "z": 17,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "9d602a08-14ec-4366-b2c8-ec55e1347b97"
+      },
+      "target": {
+        "id": "81a507bb-15b2-4558-a4bd-cb032406c7b8"
+      },
+      "id": "f708e2c9-fb60-47f0-a6a1-1fb91d91f251",
+      "z": 18,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "81a507bb-15b2-4558-a4bd-cb032406c7b8"
+      },
+      "target": {
+        "id": "8844d0c6-33fc-47bc-86a0-8d3bb1058184"
+      },
+      "id": "ddfd2213-1fc8-429b-8470-73914ea5b6df",
+      "z": 19,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "8844d0c6-33fc-47bc-86a0-8d3bb1058184"
+      },
+      "target": {
+        "id": "632a8e24-daa7-49fa-b077-83b815b0a133"
+      },
+      "id": "fbef4d76-3db2-48cb-8410-a1780e01e8f3",
+      "z": 20,
+      "attrs": {}
+    },
+    {
+      "type": "uml.Transition",
+      "source": {
+        "id": "9d602a08-14ec-4366-b2c8-ec55e1347b97"
+      },
+      "target": {
+        "id": "54b775be-cc62-40dc-851f-23aa430788a3"
+      },
+      "id": "c0920d14-8bf9-4dd2-a690-14235838a74c",
+      "z": 21,
+      "attrs": {}
+    }
+  ]
+}

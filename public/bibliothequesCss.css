@@ -1,0 +1,36 @@
+header{
+  border:2px solid #A9D0F5;
+  background-color:white;
+  color:#428bca;
+  padding-bottom:3%;
+}
+
+header h1{
+	text-align:center;
+	text-shadow:5px 4px 5px #428bca;
+}
+
+section h1{
+color:#f0ad4e;
+}
+
+#evry{
+width:5%;
+height:5%;
+float:left;
+}
+
+#ibisc{
+width:5%;
+height:8%;
+
+position:absolute;
+margin-left:89%;
+
+}
+
+section{
+width:50%;
+margin-left:10%;
+margin-top:5%;
+}

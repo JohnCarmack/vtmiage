@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>UML MAKER</title>
+  
+  <link rel="stylesheet" type="text/css" href="UMLmaker.css">
+<script src="js.js"></script>
+  
+  <!-- JointJs -->
+  <script src="joint.js"></script>
+  <script src="joint.shapes.js"></script>
+  <link rel="stylesheet" type="text/css" href="joint.css"/>
+  
+     
+  <!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.4-dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap-theme.min.css"/>
+<script src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+<body>
+  <header>
+	<h1>UML MAKER</h1>
+	<!-- Menu de navigation -->
+	<nav id="headerNav">
+	<!-- Bouton pour ouvrir un diagramme -->
+	<button type="button" class="btn btn-default" aria-label="Ouvrir">
+		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Enregistrer">
+		<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Supprimer" onclick="supprimerAll()">
+		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	</button>
+	<div id="admin" class="btn-group" role="group" aria-label="admin">
+	<button type="button" class="btn btn-default" aria-label="Paramètres">
+		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="Connexion">
+		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+	</button>
+	</div>
+	<div id="zoom" class="btn-group" role="group" aria-label="zoom">
+	<button type="button" class="btn btn-default" aria-label="zoom" onclick="zoomIn()">
+		<span class="glyphicon glyphicon-zoom-in" aria-hidden="true" ></span>
+	</button>
+	<button type="button" class="btn btn-default" aria-label="zoom" onclick="zoomOut()">
+		<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+	</button>
+	</div>
+	</nav>
+  </header>
+  
+  <nav id="bodyNav">
+  <div id="diagrammes" class="btn-group-vertical" role="group" aria-label="diagrammes">
+		<a href="UMLmakerClasse.html" type="button" class="btn btn-default" role="button">Diagramme de classe
+		<span class = "caret"></span></a>	
+		<a href="UMLmakerEtats.html" type="button" class="btn btn-default">Diagramme d'etats
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerCas.html" type="button" class="btn btn-default">Diagramme de cas d'utilisation
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerSequence.html" type="button" class="btn btn-default">Diagramme de sequence
+		<span  class = "caret"></span></a>
+		<a href="UMLmakerActivite.html" type="button" class="btn btn-default">Diagramme d'activitees
+		<span  class = "caret"></span></a>
+			<div id="paper-menu-activite" class="paper" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<!--<script src="menu_activite.js"></script>-->
+			</div>
+	</div>
+  </nav>
+  <section>
+	<div id="paper-activite" class="paper">
+	</div>
+
+		<aside>
+		<form id="propriete">
+			<div class="form-group">
+				<label for="text">Texte</label>
+				<input type="text" class="form-control  input-sm" id="texte" onchange="InputTexte()">
+			</div>
+		</form>
+		</aside>
+	<div id="mini-paper" class="paper">
+	</div>
+	
+		 <script src="activite.js"></script>
+ </section>
+
+  <footer>
+
+  </footer> 
+</body>
+</html>
