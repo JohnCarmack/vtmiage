@@ -1,28 +1,38 @@
 {
-  "name": "mamansdumonde.fr",
+  "name": "vtmiage",
   "version": "1.0.0",
-  "description": "Site de ventes entre mamans",
-  "main": "index.js",
+  "description": "Re-work of the vt software",
+  "main": "app.js",
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "body-parser": "^1.12.3",
+    "morgan": "^1.5.2",
+    "express": "^4.12.3",
+    "mongo-express": "^0.21.0",
+    "jade": "^1.9.2",
+    "backbone": "^1.1.2",
+    "serve-static": "^1.9.2",
+    "client-sessions": "^0.7.0",
+    "mongoose": "^4.0.2",
+    "nodemon": "^1.3.7",
+    "nib": "^1.1.0",
+    "stylus": "^0.51.1",
+    "socket.io": "^1.3.5"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Faouzy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaouzyChaib/vtmiage.git"
+  },
+  "author": "Faouzy & Camille & Quentin",
   "license": "ISC",
-  "dependencies": {
-    "backbone": "^1.1.2",
-    "body-parser": "^1.12.3",
-    "bootstrap": "^3.3.4",
-    "client-sessions": "^0.7.0",
-    "coffee-script": "^1.9.2",
-    "express": "^4.12.3",
-    "jade": "^1.9.2",
-    "mongo-express": "^0.21.0",
-    "mongoose": "^4.0.2",
-    "morgan": "^1.5.2",
-    "nib": "^1.1.0",
-    "nodemon": "^1.3.7",
-    "serve-static": "^1.9.2",
-    "socket.io": "^1.3.5",
-    "stylus": "^0.51.1"
-  }
+  "bugs": {
+    "url": "https://github.com/FaouzyChaib/vtmiage/issues"
+  },
+  "homepage": "https://github.com/FaouzyChaib/vtmiage#readme"
 }

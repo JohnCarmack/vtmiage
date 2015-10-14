@@ -28,7 +28,7 @@ app.use(express.static(__dirname +  '/public'));
 // all environments
 //app.set( 'port', process.env.PORT || 3001 );
 //app.engine( 'jade', engine );
-//app.set( 'views',  __dirname + '/public/views' );
+app.set( 'views',  __dirname + '/public/views' );
 //app.set( 'view engine', 'jade' );
 
 
