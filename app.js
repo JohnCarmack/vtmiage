@@ -27,9 +27,9 @@ var nib = require('nib');
 app.use(express.static(__dirname +  '/public')); 
 // all environments
 //app.set( 'port', process.env.PORT || 3001 );
-//app.engine( 'jade', engine );
+//app.engine( 'html', engine );
 app.set( 'views',  __dirname + '/public/views' );
-//app.set( 'view engine', 'jade' );
+//app.set( 'view engine', 'html' );
 
 
 
@@ -68,10 +68,10 @@ app.get('/', function(req, res) {
     res.render('index'); 
 });
 
-app.get('/lol', function(req, res) {
+/*app.get('/lol', function(req, res) {
     res.render('lol') 
 });
-
+*/
 
 
 app.get('/user/:email', function (req, res){
