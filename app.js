@@ -22,7 +22,7 @@ var Diagramme = mongoose.model('diagramme','diagramme');
 var User = mongoose.model('User','user');
 var router = express.Router();
 var nib = require('nib');
-
+var sequelize = require('sequelize');
 
 app.use(express.static(__dirname +  '/public')); 
 // all environments
