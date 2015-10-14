@@ -36,29 +36,35 @@
           <a class="navbar-brand">Visual Timetabling</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Filière<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Créér d'une filière</a></li>
+            <li><a href="#">Consulter d'une filière</a></li>
+            <li><a href="#">Supprimer d'une filière</a></li>
+          </ul>
+        </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Matière<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Créér d'une matière</a></li>
+            <li><a href="#">Consulter d'une matière</a></li>
+            <li><a href="#">Supprimer d'une matière</a></li>
+          </ul>
+        </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Créér d'un enseignement</a></li>
+            <li><a href="#">Consulter un enseignement</a></li>
+            <li><a href="#">Supprimer un enseignement</a></li>
+          </ul>
+        </li>
+            <li><a href="#">Séance</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li><a href="#">Filière</a></li>
-            <li><a href="#">Matière</a></li>
-            <li><a href="#">Enseignement</a></li>
-            <li><a href="#">Séance</a></li>
-          </ul>
-		  </div>
-		</div>
-	</div>
-		
+	
   <section>
 	<div id='calendar'></div>
  </section>
