@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <title>Visual Timetabling</title>
   
-  <link rel="icon" type="image/png" href="logo.png" />
+  <!--<link rel="icon" type="image/png" href="logo.png" />-->
   
   <link rel="stylesheet" type="text/css" href="VT.css">
-	<script src=""></script>
   <script type="text/javascript" src="jquery-1.11.3.js"></script>   
-
+  <script type="text/javascript" src="js.js"></script>
 	 
   <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
@@ -19,11 +18,12 @@
 
 
 <!-- FullCalendar -->
-<link rel="stylesheet" type="text/css" href="fullcalendar-2.4.0/fullcalendar.print.css"/>
+<link rel="stylesheet" type="text/css" href="fullcalendar-2.4.0/fullcalendar.print.css" media="print"/>
 <link rel="stylesheet" type="text/css" href="fullcalendar-2.4.0/fullcalendar.min.css"/>
 <script src='fullcalendar-2.4.0/lib/jquery.min.js'></script>
 <script src='fullcalendar-2.4.0/lib/moment.min.js'></script>
 <script src="fullcalendar-2.4.0/fullcalendar.min.js"></script>
+<script src='fullcalendar-2.4.0/lang/fr.js'></script>
 
 
 </head>
@@ -70,7 +70,8 @@
 
 	
   <section>
-	<div id='calendar'></div>
+	<div id="calendar">
+	</div>
  </section>
 
   <footer>
