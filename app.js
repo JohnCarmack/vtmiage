@@ -22,7 +22,21 @@ var Diagramme = mongoose.model('diagramme','diagramme');
 var User = mongoose.model('User','user');
 var router = express.Router();
 var nib = require('nib');
-var sequelize = require('sequelize');
+var Sequelize = require('sequelize');
+
+sequelize = new Sequelize('vtmiage', 'root', 'root', {
+      dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
+      port:    3306, // or 5432 (for postgres)
+    });
+// check database connection
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  }, function (err) { 
+    console.log('Unable to connect to the database:', err);
+  });
+
 
 app.use(express.static(__dirname +  '/public')); 
 // all environments
@@ -55,13 +69,13 @@ app.set('json spaces', 4);
 //app.use( cookieParser());
 app.use( bodyParser.json());
 app.use( bodyParser.urlencoded({ extended : true  }));
-app.use(session({
+/*app.use(session({
   cookieName : "session",
   secret: "faouzy",
   duration : 30 * 60 * 1000,
   activeDuration : 5 * 60 * 1000,
-}))
-var imagePath = 'public/hulk.jpg';
+}))*/
+//var imagePath = 'public/hulk.jpg';
 
 
 app.get('/', function(req, res) {
