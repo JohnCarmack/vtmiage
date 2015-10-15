@@ -82,6 +82,17 @@ app.get('/', function(req, res) {
     res.render('index'); 
 });
 
+app.get('/matiere', function(req,res){
+    res.send("looool");
+});
+app.get('/matiere/:id', function(req,res){
+    res.send("matiere " + req.params.id);
+});
+app.get('/enseignement', function(req,res){});
+app.get('/enseignement/:id', function(req,res){});
+app.get('/filiere', function(req,res){});
+app.get('/filiere/:id', function(req,res){});
+
 /*app.get('/lol', function(req, res) {
     res.render('lol') 
 });
