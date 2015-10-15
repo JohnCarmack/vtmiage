@@ -43,16 +43,16 @@
           <ul class="nav navbar-nav navbar-left">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Filière<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Créér une filière</a></li>
-            <li><a href="#">Consulter une filière</a></li>
-            <li><a href="#">Supprimer une filière</a></li>
+            <li><a href="#CreerFiliere">Créér une filière</a></li>
+            <li><a href="#ConsulterFiliere">Consulter une filière</a></li>
+            <li><a href="#SupprimerFiliere">Supprimer une filière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Matière<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#CreerMatiere">Créér une matière</a></li>
-            <li><a href="#">Consulter une matière</a></li>
-            <li><a href="#">Supprimer une matière</a></li>
+            <li><a href="#ConsulterMatiere">Consulter une matière</a></li>
+            <li><a href="#SupprimerMatiere">Supprimer une matière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
@@ -72,26 +72,105 @@
   <section>
 	<div id="calendar">
 	</div>
-		<div id="CreerMatiere">
-		<div class="popup_block">
-			<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-			<h2>Créér une matière</h2>
-			<form>
-				<p>
-				<label for="filere">Sélectionner une filière</label>
-				<select name="filere" id="filere">
-				</select>
-				</p>
-				<p>
-				<label for="nomMatiere">Nom de la matière</label>
-				<input type="text" name="nomMatiere" id="nomMatiere" size="30"/>
-				</p>
-				<p>
-				<input type="submit" name="valider" value="Créer"/>
-				</p>
-			</form>
+		<div id="CreerFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Créér une Filière</h2>
+				<form>
+					<p>
+					<label for="nomFiliere">Nom de la filière</label>
+					<input type="text" name="nomFiliere" id="nomFiliere" size="30"/>
+					</p>
+					<p>
+					<input type="submit" name="validerCreationFiliere" value="Créer"/>
+					</p>
+				</form>
+			</div>
 		</div>
-	</div>
+		<div id="ConsulterFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter une Filière</h2>
+				<form>
+					<p>
+					<label for="filere">Sélectionner une filière</label>
+					<select name="filere" id="filere">
+					</select>
+					</p>
+					<p>
+					<input type="submit" name="validerConsulterFiliere" value="Valider"/>
+					</p>
+				</form>
+			</div>
+		</div>
+		<div id="SupprimerFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Supprimer une Filière</h2>
+				<form>
+					<p>
+					<label for="filere">Sélectionner une filière</label>
+					<select name="filere" id="filere">
+					</select>
+					</p>
+					<p>
+					<input type="submit" name="SupprimerFiliere" value="Supprimer"/>
+					</p>
+				</form>
+			</div>
+		</div>
+		<div id="CreerMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Créér une matière</h2>
+				<form>
+					<p>
+					<label for="filere">Sélectionner une filière</label>
+					<select name="filere" id="filere">
+					</select>
+					</p>
+					<p>
+					<label for="nomMatiere">Nom de la matière</label>
+					<input type="text" name="nomMatiere" id="nomMatiere" size="30"/>
+					</p>
+					<p>
+					<input type="submit" name="validerCreationMatiere" value="Créer"/>
+					</p>
+				</form>
+			</div>
+		</div>
+		<div id="ConsulterMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter une matière</h2>
+				<form>
+					<p>
+					<label for="filere">Sélectionner une matière</label>
+					<select name="matiere" id="matiere">
+					</select>
+					</p>
+					<p>
+					<input type="submit" name="validerConsultationMatiere" value="Valider"/>
+					</p>
+				</form>
+			</div>
+		</div>
+		<div id="SupprimerMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Supprimer une matière</h2>
+				<form>
+					<p>
+					<label for="filere">Sélectionner la matière</label>
+					<select name="matiere" id="matiere">
+					</select>
+					</p>
+					<p>
+					<input type="submit" name="SupprimerMatiere" value="Supprimer"/>
+					</p>
+				</form>
+			</div>
+		</div>
  </section>
 
   <footer>

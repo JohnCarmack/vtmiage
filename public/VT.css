@@ -53,3 +53,83 @@ img.btn_close {
     float: right;
     margin: 0 0 0 0;
 }
+
+#ConsulterMatiere{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#ConsulterMatiere:target{
+    display: block;
+}
+
+#ConsulterMatiere form{
+	padding-top:2%;
+}
+
+#SupprimerMatiere{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#SupprimerMatiere:target{
+    display: block;
+}
+
+#SupprimerMatiere form{
+	padding-top:2%;
+}
+
+#CreerFiliere{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#CreerFiliere:target{
+    display: block;
+}
+
+#CreerFiliere form{
+	padding-top:2%;
+}
+
+#ConsulterFiliere{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#ConsulterFiliere:target{
+    display: block;
+}
+
+#ConsulterFiliere form{
+	padding-top:2%;
+}
+
+#SupprimerFiliere{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#SupprimerFiliere:target{
+    display: block;
+}
+
+#SupprimerFiliere form{
+	padding-top:2%;
+}
