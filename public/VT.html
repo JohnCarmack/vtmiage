@@ -43,22 +43,22 @@
           <ul class="nav navbar-nav navbar-left">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Filière<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Créér une filière</a></li>
-            <li><a href="#">Consulter une filière</a></li>
-            <li><a href="#">Supprimer une filière</a></li>
+            <li><a href="#CreerFiliere">Créér une filière</a></li>
+            <li><a href="#ConsulterFiliere">Consulter une filière</a></li>
+            <li><a href="#SupprimerFiliere">Supprimer une filière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Matière<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Créér une matière</a></li>
-            <li><a href="#">Consulter une matière</a></li>
-            <li><a href="#">Supprimer une matière</a></li>
+            <li><a href="#CreerMatiere">Créér une matière</a></li>
+            <li><a href="#ConsulterMatiere">Consulter une matière</a></li>
+            <li><a href="#SupprimerMatiere">Supprimer une matière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#CreerEnseignement">Créér un enseignement</a></li>
-            <li><a href="#">Consulter un enseignement</a></li>
+            <li><a href="#ConsulterEnseignement">Consulter un enseignement</a></li>
             <li><a href="#">Supprimer un enseignement</a></li>
           </ul>
         </li>
@@ -122,6 +122,141 @@
 			</form>
 		</div>
 	</div>
+		<div id="CreerFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Créér une Filière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+					<div>
+					<label class="col-sm-3 control-label" for="nomFiliere">Nom de la filière</label>
+					<div class="col-sm-3">
+					<input type="text" name="nomFiliere" id="nomFiliere" class="form-control"/>
+					</div>
+					</div>
+					</div>
+					<div>
+					<input type="submit" name="validerCreationFiliere" value="Créer" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="ConsulterFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter une Filière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="filiere">Sélectionner la filère</label>
+							<div class="col-sm-3">
+							<select name="filiere" id="filiere" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="validerConsulterFiliere" value="Valider" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="SupprimerFiliere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Supprimer une Filière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="filiere">Supprimer la filère</label>
+							<div class="col-sm-3">
+							<select name="filiere" id="filiere" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="SupprimerFiliere" value="Supprimer" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="CreerMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Créér une matière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="filiere">Sélectionner la filère</label>
+							<div class="col-sm-3">
+							<select name="filiere" id="filiere" class="form-control">
+							</select>
+							</div>
+							</div>
+						<div>
+					<div class="form-group">
+					<label class="col-sm-3 control-label" for="nomMatiere">Nom de la matière</label>
+					<div class="col-sm-3">
+					<input type="text" name="nomMatiere" id="nomMatiere" class="form-control"/>
+					</div>
+					</div>
+					</div>
+					<div>
+					<input type="submit" name="validerCreationMatiere" value="Créer" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="ConsulterMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter une matière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="matiere">Consulter une matière</label>
+							<div class="col-sm-3">
+							<select name="matiere" id="matiere" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="validerConsultationMatiere" value="Valider" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="SupprimerMatiere">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Supprimer une matière</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="matiere">Supprimer une matière</label>
+							<div class="col-sm-3">
+							<select name="matiere" id="matiere" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="SupprimerMatiere" value="Supprimer" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="ConsulterEnseignement">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter un Enseignement</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="enseignement">Sélectionner un enseignement</label>
+							<div class="col-sm-3">
+							<select name="enseignement" id="enseignement" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="ValiderConsulterEnseignement" value="Valider" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
  </section>
 
   <footer>
