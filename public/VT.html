@@ -78,35 +78,45 @@
 			<h2>Créér un enseignement</h2>
 			<form class="form-horizontal">
 				<div class="form-group">
-				<label class="col-sm-2 control-label" for="matiere">Sélectionner une matière</label>
+				<label class="col-sm-4 control-label" for="matiere">Sélectionner une matière</label>
+				<div class="col-sm-3">
 				<select name="matiere" id="matiere" class="form-control">
 				</select>
 				</div>
-				<div class="form-group">
-				   <label for="type">Sélectionner le type d'enseignement:</label><br />
-				   <input type="radio" name="type" value="CM" id="CM" /> <label for="CM">CM</label><br />
-				   <input type="radio" name="type" value="TD" id="TD" /> <label for="TD">TD</label><br />
-				   <input type="radio" name="type" value="Exam" id="Exam" /> <label for="Exam">Examen</label><br />
 				</div>
+				
+					<label class="col-sm-6 control-label" for="type">Sélectionner le type d'enseignement:</label><br />
+					<div class="radio">
+					<label><input type="radio" name="type" value="CM" id="CM">CM</label>
+				   </div>
+				   <div class="radio">
+				   <label><input type="radio" name="type" value="TD" id="TD">TD</label>
+				   </div>
+				   <div class="radio">
+				   <label><input type="radio" name="type" value="Exam" id="Examen">Examen</label>
+				   </div>
+				
 				<div class="form-group">
-				<label class="col-sm-3 control-label" for="nom_enseignement">Nom de l'enseignement</label>
+				<label class="col-sm-4 control-label" for="nom_enseignement">Nom de l'enseignement</label>
 				<div class="col-sm-3">
 				<input type="text" name="nom_enseignement" id="nom_enseignement" class="form-control" disabled="disabled" />
 				</div>
 				</div>
 				<div class="form-group">
-				<label class="col-sm-3 control-label" for="duree_enseignement">Durée de l'enseignement</label>
+				<label class="col-sm-4 control-label" for="duree_enseignement">Durée de l'enseignement</label>
 				<div class="col-sm-3">
-				<input type="text" name="duree_enseignement" id="duree_enseignement" class="form-control" size="3"  placeholder="20"/><label class="col-sm-10 control-label" for="duree_enseignement"> Heures</label>
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="duree_seance_enseignement">Durée de la séance de l'enseignement</label>
-				<input type="text" name="duree_seance_enseignement" id="duree_seance_enseignement" class="form-control" size="2"  placeholder="01"/><label for="duree_seance_enseignement"> Heures</label><input type="text" name="duree_seance_enseignement" id="duree_seance_enseignement"  size="2"  placeholder="30"/>
+				<input type="text" name="duree_enseignement" id="duree_enseignement" class="form-control" size="3"  placeholder="20"/></div><label  for="duree_enseignement"> Heures</label>
 				</div>
 				<div class="form-group">
-				<label for="nb_seance_semaine_enseignement">Nombre de séances par semaine de l'enseignement</label>
+				<label class="col-sm-6 control-label" for="duree_seance_enseignement">Durée de la séance de l'enseignement</label>
+				<div class="col-sm-3">
+				<input type="text" name="duree_seance_enseignement" id="duree_seance_enseignement" class="form-control" size="2"  placeholder="01"/></div><label class="col-sm-1 control-label" for="duree_seance_enseignement">Heures</label><div class="col-sm-2"><input class="form-control" type="text" name="duree_seance_enseignement" id="duree_seance_enseignement"  size="2"  placeholder="30"/></div>
+				</div>
+				<div class="form-group">
+				<label  class="col-sm-7 control-label" for="nb_seance_semaine_enseignement">Nombre de séances par semaine de l'enseignement</label>
+				<div class="col-sm-3">
 				<input type="text" name="nb_seance_semaine_enseignement" id="nb_seance_semaine_enseignement" class="form-control" size="3"  placeholder="2"/>
+				</div>
 				</div>
 				<input type="submit" value="Créér" class="btn btn-primary"/>
 			</form>
