@@ -92,15 +92,35 @@ var Matiere = sequelize.define('Matiere', {
      }
  })
 
-//var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
+var Filiere = sequelize.define('Filiere', {
+    nom: {type: Sequelize.STRING, unique: true},
+    description: Sequelize.TEXT
+},
+ {
+     instanceMethods: {
+	 getInfos: function(){
+	     return [this.nom, this.description].join(' ')
+	 }
+     }
+ })
+
+
+Filiere.hasMany(Matiere, {as: 'Matiere' });
+
+
+var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
 
 //matiere1.save();    
 
-
+var filiere1 = Filiere.build({ nom: 'M2 Miage APP', description: 'Filiere du M2 de miage apprentissage' });
+//filiere1.save();
+//filiere1.setMatiere('matiere1');
 
 sequelize.sync();
 
 var mats = Matiere.all();
+var fils = Filiere.all();
+
 
 app.get('/', function(req, res) {
     res.render('index'); 
@@ -114,7 +134,11 @@ app.get('/matiere/:id', function(req,res){
 });
 app.get('/enseignement', function(req,res){});
 app.get('/enseignement/:id', function(req,res){});
-app.get('/filiere', function(req,res){});
+
+app.get('/filiere', function(req,res){
+    res.send(fils);
+});
+
 app.get('/filiere/:id', function(req,res){});
 
 /*app.get('/lol', function(req, res) {
