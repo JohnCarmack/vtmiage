@@ -58,7 +58,7 @@
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Créér un enseignement</a></li>
-            <li><a href="#">Consulter un enseignement</a></li>
+            <li><a href="#ConsulterEnseignement">Consulter un enseignement</a></li>
             <li><a href="#">Supprimer un enseignement</a></li>
           </ul>
         </li>
@@ -145,7 +145,7 @@
 				<h2>Consulter une matière</h2>
 				<form>
 					<p>
-					<label for="filere">Sélectionner une matière</label>
+					<label for="matiere">Sélectionner une matière</label>
 					<select name="matiere" id="matiere">
 					</select>
 					</p>
@@ -161,13 +161,31 @@
 				<h2>Supprimer une matière</h2>
 				<form>
 					<p>
-					<label for="filere">Sélectionner la matière</label>
+					<label for="matiere">Sélectionner la matière</label>
 					<select name="matiere" id="matiere">
 					</select>
 					</p>
 					<p>
 					<input type="submit" name="SupprimerMatiere" value="Supprimer"/>
 					</p>
+				</form>
+			</div>
+		</div>
+		<div id="ConsulterEnseignement">
+			<div class="popup_block">
+				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
+				<h2>Consulter un Enseignement</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-4 control-label" for="enseignement">Sélectionner un enseignement</label>
+							<div class="col-sm-3">
+							<select name="enseignement" id="enseignement" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="ValiderConsulterEnseignement" value="Valider" class="btn btn-primary"/>
+					</div>
 				</form>
 			</div>
 		</div>
