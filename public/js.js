@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
 
     $('#calendar').fullCalendar({
         header: {
@@ -9,17 +9,13 @@ $(document).ready(function() {
 		
     })
 
-});
-
-$(function () {
- //console.log(req.session.cookie);
-console.log("Test AJAX");
-
- $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to be the pseudo log
+$.ajax({url: "/matiere", success: function(result){ // putting "admin" need to be the pseudo log
  	// document.cookie ="username="+result[0].userName;
- 	  //alert(document.cookie);
+ 	 // alert(result.toJSON());
+console.log(result.fulfillmentValue[0].nom);
               for (i = 0; i< result.length; i++){
               console.log(result[i].nom);
+console.log("héhooooo");
               //console.log(result[i].diagrammeName);
               //   $("tbody:nth-child(4)")
            document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += //"<tr>"+
@@ -33,5 +29,12 @@ console.log("Test AJAX");
          
         }});	
 
+});
+
+$(function () {
+ //console.log(req.session.cookie);
+console.log("Test AJAX");
+
+ 
 
     });
