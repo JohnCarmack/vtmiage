@@ -32,7 +32,7 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
-              for (i = 0; i< result.fulfillmentValue.length; i++){
+              for (j = 0; j< result.fulfillmentValue.length; j++){
               //console.log(result.fulfillmentValue[i].nom);
               //console.log(result[i].diagrammeName);
               //   $("tbody:nth-child(4)")
@@ -42,7 +42,7 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
 		//"<th>"+"N°"+"</th>"+
 		//"<th>"+"Diagrammes"+"</th>"+
 	//"</tr>"+
-	"<option>"+result.fulfillmentValue[i].nom+"</option>";
+	"<option>"+result.fulfillmentValue[j].nom+"</option>";
               }
          
         }});		
