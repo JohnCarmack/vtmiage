@@ -12,9 +12,9 @@
 $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to be the pseudo log
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
-console.log(result.fulfillmentValue[0].nom);
-              for (i = 0; i< result.length; i++){
-              console.log(result[i].nom);
+//console.log(result.fulfillmentValue[0].nom);
+              for (i = 0; i< result.fulfillmentValue.length; i++){
+              console.log(result.fulfillmentValue[i].nom);
 console.log("héhooooo");
               //console.log(result[i].diagrammeName);
               //   $("tbody:nth-child(4)")
@@ -24,7 +24,7 @@ console.log("héhooooo");
 		//"<th>"+"N°"+"</th>"+
 		//"<th>"+"Diagrammes"+"</th>"+
 	//"</tr>"+
-	"<option>"+result[i]._nom+"<option>";
+	"<option>"+result.fulfillmentValue[i]._nom+"<option>";
               }
          
         }});	
