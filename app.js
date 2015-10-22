@@ -105,19 +105,31 @@ var Filiere = sequelize.define('Filiere', {
  })
 
 
-Filiere.hasMany(Matiere, {as: 'Matiere' });
 
+//var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
 
-var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
-
-//matiere1.save();    
-
-var filiere1 = Filiere.build({ nom: 'M2 Miage APP', description: 'Filiere du M2 de miage apprentissage' });
 //filiere1.save();
 //filiere1.setMatiere('matiere1');
 
+//myFiliere.setMatiere(myMatiere);
 sequelize.sync();
+var myMatiere = Matiere.find({where :{nom: 'Math'}}).then(
+    function(matiere) { console.log("matiere trouvee") },
+    function(err) { console.log(err)}
+);
+//matiere1.save();    
 
+//var filiere1 = Filiere.build({ nom: 'M2 Miage APP', description: 'Filiere du M2 de miage apprentissage' });
+
+var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
+    function(filiere) { console.log("filiere trouvee") },
+    function(err) { console.log(err)}
+);
+
+
+Filiere.hasMany(Matiere);
+Matiere.belongsTo(Filiere);
+//myMatiere.setFiliere(myFiliere);
 var mats = Matiere.all();
 var fils = Filiere.all();
 
