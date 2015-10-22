@@ -24,7 +24,7 @@ console.log("héhooooo");
 		//"<th>"+"N°"+"</th>"+
 		//"<th>"+"Diagrammes"+"</th>"+
 	//"</tr>"+
-	"<option>"+result.fulfillmentValue[i]._nom+"<option>";
+	"<option>"+result.fulfillmentValue[i].nom+"<option>";
               }
          
         }});	
