@@ -44,14 +44,14 @@ app.use(express.static(__dirname +  '/public'));
 // all environments
 //app.set( 'port', process.env.PORT || 3001 );
 //app.engine( 'html', engine );
-app.set( 'views',  __dirname + '/public/views' );
+app.set( 'views',  __dirname + '/public/' );
 //app.set( 'view engine', 'html' );
 
 
 
   // Middleware to compile `styl` files to `css`.
   // For example, `assets/stylesheets/main.styl` will be compiled to `public/stylesheets/main.css`
-    app.use(stylus.middleware({
+/*    app.use(stylus.middleware({
     // Source directory
 	src: __dirname + '/public',
         // Compile function
@@ -60,7 +60,7 @@ app.set( 'views',  __dirname + '/public/views' );
 		.set('filename', path)
 		.set('compress', true).use(nib());
 	}
-    }));
+    }));*/
 
 
 
@@ -71,13 +71,7 @@ app.set('json spaces', 4);
 //app.use( cookieParser());
 app.use( bodyParser.json());
 app.use( bodyParser.urlencoded({ extended : true  }));
-/*app.use(session({
-  cookieName : "session",
-  secret: "faouzy",
-  duration : 30 * 60 * 1000,
-  activeDuration : 5 * 60 * 1000,
-}))*/
-//var imagePath = 'public/hulk.jpg';
+
 
 
 var Matiere = sequelize.define('Matiere', {
@@ -153,10 +147,6 @@ app.get('/filiere', function(req,res){
 
 app.get('/filiere/:id', function(req,res){});
 
-/*app.get('/lol', function(req, res) {
-    res.render('lol') 
-});
-*/
 
 
 app.get('/user/:email', function (req, res){
@@ -235,6 +225,7 @@ app.get('/diagramme', function (req, res){
     }
   });
 });
+
 app.post('/newDiagramme', function (req, res){
   var diagramme;
 
