@@ -38,6 +38,8 @@ sequelize
   });
 
 
+
+
 app.use(express.static(__dirname +  '/public')); 
 // all environments
 //app.set( 'port', process.env.PORT || 3001 );
@@ -78,9 +80,78 @@ app.use( bodyParser.urlencoded({ extended : true  }));
 //var imagePath = 'public/hulk.jpg';
 
 
+var Matiere = sequelize.define('Matiere', {
+    nom: {type: Sequelize.STRING, unique: true},
+    description: Sequelize.TEXT
+},
+ {
+     instanceMethods: {
+	 getInfos: function(){
+	     return [this.nom, this.description].join(' ')
+	 }
+     }
+ })
+
+var Filiere = sequelize.define('Filiere', {
+    nom: {type: Sequelize.STRING, unique: true},
+    description: Sequelize.TEXT
+},
+ {
+     instanceMethods: {
+	 getInfos: function(){
+	     return [this.nom, this.description].join(' ')
+	 }
+     }
+ })
+
+
+
+//var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
+
+//filiere1.save();
+//filiere1.setMatiere('matiere1');
+
+//myFiliere.setMatiere(myMatiere);
+sequelize.sync();
+var myMatiere = Matiere.find({where :{nom: 'Math'}}).then(
+    function(matiere) { console.log("matiere trouvee") },
+    function(err) { console.log(err)}
+);
+//matiere1.save();    
+
+//var filiere1 = Filiere.build({ nom: 'M2 Miage APP', description: 'Filiere du M2 de miage apprentissage' });
+
+var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
+    function(filiere) { console.log("filiere trouvee") },
+    function(err) { console.log(err)}
+);
+
+
+Filiere.hasMany(Matiere);
+Matiere.belongsTo(Filiere);
+//myMatiere.setFiliere(myFiliere);
+var mats = Matiere.all();
+var fils = Filiere.all();
+
+
 app.get('/', function(req, res) {
     res.render('index'); 
 });
+
+app.get('/matiere', function(req,res){
+    res.send(mats);
+});
+app.get('/matiere/:id', function(req,res){
+    res.send("matiere " + req.params.id);
+});
+app.get('/enseignement', function(req,res){});
+app.get('/enseignement/:id', function(req,res){});
+
+app.get('/filiere', function(req,res){
+    res.send(fils);
+});
+
+app.get('/filiere/:id', function(req,res){});
 
 /*app.get('/lol', function(req, res) {
     res.render('lol') 
