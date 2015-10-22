@@ -22,7 +22,7 @@ $(function () {
               console.log(result[i].nom);
               //console.log(result[i].diagrammeName);
               //   $("tbody:nth-child(4)")
-           document.getElementById('CreeEnseignement').getElementsByTagName('select')[0].innerHTML += //"<tr>"+
+           document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += //"<tr>"+
 		//"<th>"+"Edition"+"</th>"+
 		//"<th>"+"Suppression"+"</th>"+
 		//"<th>"+"N°"+"</th>"+
