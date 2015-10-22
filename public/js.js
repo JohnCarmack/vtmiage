@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 $(function () {
  //console.log(req.session.cookie);
-
+console.log("Test AJAX");
 
  $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to be the pseudo log
  	// document.cookie ="username="+result[0].userName;
