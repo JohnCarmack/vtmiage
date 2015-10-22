@@ -15,7 +15,6 @@ $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to b
 //console.log(result.fulfillmentValue[0].nom);
               for (i = 0; i< result.fulfillmentValue.length; i++){
               console.log(result.fulfillmentValue[i].nom);
-console.log("héhooooo");
               //console.log(result[i].diagrammeName);
               //   $("tbody:nth-child(4)")
            document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += //"<tr>"+
@@ -24,17 +23,10 @@ console.log("héhooooo");
 		//"<th>"+"N°"+"</th>"+
 		//"<th>"+"Diagrammes"+"</th>"+
 	//"</tr>"+
-	"<option>"+result.fulfillmentValue[i].nom+"<option>";
+	"<option>"+result.fulfillmentValue[i].nom+"</option>";
               }
          
         }});	
 
 });
 
-$(function () {
- //console.log(req.session.cookie);
-console.log("Test AJAX");
-
- 
-
-    });
