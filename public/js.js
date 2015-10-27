@@ -51,16 +51,16 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
 		
 });
 
-function creerfiliere(){
-	$.post("/creerFiliere",
-	{
-		nom: document.getElementById("creerFiliere").getElementsByTagName("input")[0].value,
-	},
-		function(data, status){
-			console.log(data,"succés");
-		}
-	);
-}
+// function creerfiliere(){
+	// $.post("/creerFiliere",
+	// {
+		// nom: document.getElementById("creerFiliere").getElementsByTagName("input")[0].value,
+	// },
+		// function(data, status){
+			// console.log(data,"succés");
+		// }
+	// );
+// }
 
 function creerMatiere(){
 	$.post("/creerMatiere",
