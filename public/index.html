@@ -126,7 +126,7 @@
 			<div class="popup_block">
 				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
 				<h2>Créér une Filière</h2>
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="post">
 					<div class="form-group">
 					<div>
 					<label class="col-sm-3 control-label" for="nomFiliere">Nom de la filière</label>
@@ -136,7 +136,7 @@
 					</div>
 					</div>
 					<div>
-					<input type="submit" name="validerCreationFiliere" value="Créer" class="btn btn-primary"/>
+					<input onclick="creerFiliere" type="submit" name="validerCreationFiliere" value="Créer" class="btn btn-primary"/>
 					</div>
 				</form>
 			</div>
@@ -181,7 +181,7 @@
 			<div class="popup_block">
 				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
 				<h2>Créér une matière</h2>
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="post">
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="filiere">Sélectionner la filère</label>
 							<div class="col-sm-3">
@@ -198,7 +198,7 @@
 					</div>
 					</div>
 					<div>
-					<input type="submit" name="validerCreationMatiere" value="Créer" class="btn btn-primary"/>
+					<input  onclick="creerMatiere type="submit" name="validerCreationMatiere" value="Créer" class="btn btn-primary"/>
 					</div>
 				</form>
 			</div>
