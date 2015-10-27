@@ -43,9 +43,35 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
 		//"<th>"+"Diagrammes"+"</th>"+
 	//"</tr>"+
 	"<option>"+result.fulfillmentValue[j].nom+"</option>";
+		 document.getElementById('ConsulterFiliere').getElementsByTagName('select')[0].innerHTML +=
+	"<option>"+result.fulfillmentValue[j].nom+"</option>";
               }
          
         }});		
 		
 });
+
+function creerfiliere(){
+	$.post("/creerFiliere",
+	{
+		nom: document.getElementById("creerFiliere").getElementsByTagName("input")[0].value,
+	},
+		function(data, status){
+			console.log(data,"succés");
+		}
+	);
+}
+
+function creerMatiere(){
+	$.post("/creerMatiere",
+	{
+		filiere: document.getElementById("creerMatiere").getElementsByTagName("input")[0].value,
+		nom: document.getElementById("creerMatiere").getElementsByTagName("input")[1].value,
+	},
+		function(data, status){
+			console.log(data,"succés");
+		}
+	);
+}
+	
 
