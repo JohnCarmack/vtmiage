@@ -154,8 +154,8 @@ app.get('/filiere/:id', function(req,res){});
 
 //Création d'une filiere avec le nom passé en parametre
 app.post('/creerFiliere', function(req, res){
-var filierePost = Filiere.build({ nom: req.body.nom});
-console.log(req.body.nom);
+var filierePost = Filiere.build({ nom: req.body.nomFiliere});
+console.log(req.body.nomFiliere);
 filierePost.save().then(function( filierePost){
   console.log("SAUVEGARDE DE : " + filierePost);
 });
