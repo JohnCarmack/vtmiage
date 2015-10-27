@@ -1,5 +1,5 @@
 // mongoose setup
-require( './db' );
+//require( './db' );
 
 var express        = require( 'express' );
 var http           = require( 'http' );
@@ -15,11 +15,11 @@ var bodyParser     = require( 'body-parser' );
 var logger         = require( 'morgan' );
 //var errorHandler   = require( 'errorhandler' );
 var static         = require( 'serve-static' );
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var app    = express();
 //var routes = require( './routes' );
-var Diagramme = mongoose.model('diagramme','diagramme');
-var User = mongoose.model('User','user');
+//var Diagramme = mongoose.model('diagramme','diagramme');
+//var User = mongoose.model('User','user');
 var router = express.Router();
 var nib = require('nib');
 var Sequelize = require('sequelize');
@@ -148,7 +148,7 @@ app.get('/filiere', function(req,res){
 app.get('/filiere/:id', function(req,res){});
 
 
-
+/*
 app.get('/user/:email', function (req, res){
 var uEmail = req.params.email;
   User.find({mail: uEmail},function(err, result) {
@@ -156,10 +156,10 @@ var uEmail = req.params.email;
   });
 console.log("Email: " + req.params.email);
 });
+*/
 
 
-
-
+/*
 //BY username ??
 app.get('/diagramme/byUser', function (req, res){
 var uuserName = req.session.user;//req.params.userName;
@@ -167,7 +167,8 @@ var uuserName = req.session.user;//req.params.userName;
     return res.json(result);
   });
 console.log("userName: " + req.params.userName);
-});
+});*/
+
 /*
 //by diagram  name not used
 app.get('/diagramme/byName/:diagrammeName', function(req, res){
@@ -179,7 +180,7 @@ console.log("diagrammeName: " + req.params.diagrammeName);
 
 })*/
 
-
+/*
 app.get('/user/:email/:diagramme', function (req, res){
 var uDiagramme = req.params.diagramme;
 var uEmail = req.params.email;
@@ -192,7 +193,8 @@ var uEmail = req.params.email;
     return res.json(result);
   });
 console.log("User diagram : " + req.params.diagramme);
-});
+});*/
+
 /*
 app.get('/user/:email/:diagrammeID', function (req, res){
 var diagrammeID = req.body.diagrammeID;
@@ -202,7 +204,7 @@ var diagrammeID = req.body.diagrammeID;
   console.log(req.body.diagrammeID); 
 });
 */
-
+/*
 app.get('/diagramme/:id', function (req, res){
   return Diagramme.findOne(req.params.id, function (err, diagramme) {
     if (!err) {
@@ -261,17 +263,18 @@ app.post('/newDiagramme', function (req, res){
   res.end("yes");
   });
 });
-*/
+*//*
 app.get('/diagramme/:id', function (req, res){
 console.log("calllllllleed");
 Diagramme.findById({_id: id}, function (err, dia) { 
 
 res.json(dia);
 });
-
+*/
 
 
 /* PUT /todos/:id */
+/*
 app.put('/save/byName/:diagrammeName', function(req, res, next) {
   Diagramme.findByIdAndUpdate(req.body.diagrammeName, req.body.cells, function (err, post) {
     if (err) return next(err);
@@ -279,7 +282,7 @@ app.put('/save/byName/:diagrammeName', function(req, res, next) {
   });
 });
 
-
+*/
 /*  return Diagramme.find(function (err, diagramme) {
     if (!err) {
 //  res.contentType('image/jpg'); 
@@ -290,9 +293,9 @@ app.put('/save/byName/:diagrammeName', function(req, res, next) {
       return console.log(err);
     }
   });*/
-});
+//});
 //Register a user
-app.post('/newUser', function (req, res){
+/*app.post('/newUser', function (req, res){
   var userMail = req.body.mail;
   var userPass = req.body.password;
   console.log("POST: ");
@@ -302,7 +305,7 @@ app.post('/newUser', function (req, res){
     console.log("already exist !!");
 
   }
-  else {*/
+  else {
   user = new User({
     mail: req.body.mail,
     password: req.body.password,
@@ -321,8 +324,8 @@ app.post('/newUser', function (req, res){
 //}
 });
 
-
-
+*/
+/*
 //login a user
 app.post('/login', function (req, res){
   //console.log(req.body);
@@ -363,8 +366,10 @@ app.get('/user', function (req, res){
       return console.log(err);
     }
   });
-});
-/*// Routes
+});*/
+
+// Routes
+/*
 app.use( routes.current_user );
 app.get(  '/',            routes.index );
 app.post( '/create',      routes.create );
