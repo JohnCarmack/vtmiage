@@ -87,13 +87,13 @@ var Matiere = sequelize.define('Matiere', {
  })
 
 var Filiere = sequelize.define('Filiere', {
-    nom: {type: Sequelize.STRING, unique: true},
-    description: Sequelize.TEXT
+    nom: {type: Sequelize.STRING, unique: true}
+    //description: Sequelize.TEXT
 },
  {
      instanceMethods: {
 	 getInfos: function(){
-	     return [this.nom, this.description].join(' ')
+	     return [this.nom]
 	 }
      }
  })
@@ -102,30 +102,35 @@ var Filiere = sequelize.define('Filiere', {
 
 //var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
 
-//filiere1.save();
+
 //filiere1.setMatiere('matiere1');
 
 //myFiliere.setMatiere(myMatiere);
-sequelize.sync();
-var myMatiere = Matiere.find({where :{nom: 'Math'}}).then(
+
+
+/*var myMatiere = Matiere.find({where :{nom: 'Math'}}).then(
     function(matiere) { console.log("matiere trouvee") },
     function(err) { console.log(err)}
 );
+*/
 //matiere1.save();    
 
-//var filiere1 = Filiere.build({ nom: 'M2 Miage APP', description: 'Filiere du M2 de miage apprentissage' });
+//var filiere1 = Filiere.build({ nom: 'M2 Miage APP'});
+//filiere1.save();
 
+/*
 var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
     function(filiere) { console.log("filiere trouvee") },
     function(err) { console.log(err)}
 );
-
-
+*/
+sequelize.sync();
 Filiere.hasMany(Matiere);
 Matiere.belongsTo(Filiere);
 //myMatiere.setFiliere(myFiliere);
 var mats = Matiere.all();
 var fils = Filiere.all();
+
 
 
 app.get('/', function(req, res) {
@@ -146,6 +151,19 @@ app.get('/filiere', function(req,res){
 });
 
 app.get('/filiere/:id', function(req,res){});
+
+//Création d'une filiere avec le nom passé en parametre
+app.post('/creerFiliere', function(req, res){
+var filierePost = Filiere.build({ nom: req.body.nom});
+console.log(req.body.nom);
+filierePost.save().then(function( filierePost){
+  console.log("SAUVEGARDE DE : " + filierePost);
+});
+//console.log(req.params)
+//console.log(req.params.body['nom']);
+
+});
+
 
 
 /*
