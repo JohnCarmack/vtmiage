@@ -158,6 +158,8 @@ var filierePost = Filiere.build({ nom: req.body.nomFiliere});
 console.log(req.body.nomFiliere);
 filierePost.save().then(function( filierePost){
   console.log("SAUVEGARDE DE : " + filierePost);
+  //res.send('Filiere créée !');
+  res.redirect('/');
 });
 //console.log(req.params)
 //console.log(req.params.body['nom']);
