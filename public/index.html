@@ -43,22 +43,22 @@
           <ul class="nav navbar-nav navbar-left">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Filière<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#CreerFiliere">Créér une filière</a></li>
-            <li><a href="#ConsulterFiliere">Consulter une filière</a></li>
-            <li><a href="#SupprimerFiliere">Supprimer une filière</a></li>
+            <li><a href="#CreerFiliere" data-toggle="modal" data-target="#CreerFiliere">Créér une filière</a></li>
+            <li><a href="#ConsulterFiliere" data-toggle="modal" data-target="#ConsulterFiliere">Consulter une filière</a></li>
+            <li><a href="#SupprimerFiliere" data-toggle="modal" data-target="#SupprimerFiliere">Supprimer une filière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Matière<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#CreerMatiere">Créér une matière</a></li>
-            <li><a href="#ConsulterMatiere">Consulter une matière</a></li>
-            <li><a href="#SupprimerMatiere">Supprimer une matière</a></li>
+            <li><a href="#CreerMatiere" data-toggle="modal" data-target="#CreerMatiere">Créér une matière</a></li>
+            <li><a href="#ConsulterMatiere" data-toggle="modal" data-target="#ConsulterMatiere">Consulter une matière</a></li>
+            <li><a href="#SupprimerMatiere" data-toggle="modal" data-target="#SupprimerMatiere">Supprimer une matière</a></li>
           </ul>
         </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#CreerEnseignement">Créér un enseignement</a></li>
-            <li><a href="#ConsulterEnseignement">Consulter un enseignement</a></li>
+            <li><a href="#CreerEnseignement" data-toggle="modal" data-target="#CreerEnseignement">Créér un enseignement</a></li>
+            <li><a href="#ConsulterEnseignement" data-toggle="modal" data-target="#ConsulterEnseignement">Consulter un enseignement</a></li>
             <li><a href="#">Supprimer un enseignement</a></li>
           </ul>
         </li>
@@ -72,65 +72,77 @@
   <section>
 	<div id="calendar">
 	</div>
-	<div id="CreerEnseignement">
-		<div class="popup_block">
-			<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-Close-icon.png"></a>
-			<h2>Créér un enseignement</h2>
-			<form class="form-horizontal">
+	<div class="modal fade" id="CreerEnseignement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="CreerEnseignementNom">Créér un enseignement</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post">
 				<div class="form-group">
-				<label class="col-sm-4 control-label" for="matiere">Sélectionner une matière</label>
-				<div class="col-sm-3">
+				<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
+				<div class="col-sm-4">
 				<select name="matiere" id="matiere" class="form-control">
 				</select>
 				</div>
 				</div>
-				
-					<label class="col-sm-6 control-label" for="type">Sélectionner le type d'enseignement:</label><br />
-					<div class="radio">
-					<label><input type="radio" name="type" value="CM" id="CM">CM</label>
-				   </div>
-				   <div class="radio">
-				   <label><input type="radio" name="type" value="TD" id="TD">TD</label>
-				   </div>
-				   <div class="radio">
-				   <label><input type="radio" name="type" value="Exam" id="Examen">Examen</label>
-				   </div>
-				
+				<label class="col-sm-4 control-label" for="matiere">Sélectionner un type</label>
+				<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary">
+				<input type="radio" name="options" id="CM" autocomplete="off"> CM
+			  </label>
+				<label class="btn btn-primary">
+				<input type="radio" name="options" id="TD" autocomplete="off"> TD
+			  </label>
+			  <label class="btn btn-primary">
+				<input type="radio" name="options" id="Exam" autocomplete="off"> Examen
+			  </label>
+			  </div>
+				<br />	
+				<br />
 				<div class="form-group">
 				<label class="col-sm-4 control-label" for="nom_enseignement">Nom de l'enseignement</label>
-				<div class="col-sm-3">
-				<input type="text" name="nom_enseignement" id="nom_enseignement" class="form-control" disabled="disabled" />
+				<div class="col-sm-4">
+				<input type="text" name="nom_enseignement" id="nom_enseignement" class="form-control" />
 				</div>
 				</div>
 				<div class="form-group">
 				<label class="col-sm-4 control-label" for="duree_enseignement">Durée de l'enseignement</label>
-				<div class="col-sm-3">
-				<input type="text" name="duree_enseignement" id="duree_enseignement" class="form-control" size="3"  placeholder="20"/></div><label  for="duree_enseignement"> Heures</label>
+				<div class="col-sm-2">
+				<input type="text" name="duree_enseignement" id="duree_enseignement" class="form-control" size="3"  placeholder="20"/></div><label class="col-sm-1 control-label" for="duree_enseignement"> Heures</label>
 				</div>
 				<div class="form-group">
 				<label class="col-sm-6 control-label" for="duree_seance_enseignement">Durée de la séance de l'enseignement</label>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 				<input type="text" name="duree_seance_enseignement" id="duree_seance_enseignement" class="form-control" size="2"  placeholder="01"/></div><label class="col-sm-1 control-label" for="duree_seance_enseignement">Heures</label><div class="col-sm-2"><input class="form-control" type="text" name="duree_seance_enseignement" id="duree_seance_enseignement"  size="2"  placeholder="30"/></div>
 				</div>
 				<div class="form-group">
-				<label  class="col-sm-7 control-label" for="nb_seance_semaine_enseignement">Nombre de séances par semaine de l'enseignement</label>
-				<div class="col-sm-3">
+				<label  class="col-sm-8 control-label" for="nb_seance_semaine_enseignement">Nombre de séances par semaine de l'enseignement</label>
+				<div class="col-sm-2">
 				<input type="text" name="nb_seance_semaine_enseignement" id="nb_seance_semaine_enseignement" class="form-control" size="3"  placeholder="2"/>
 				</div>
 				</div>
 				<input type="submit" value="Créér" class="btn btn-primary"/>
 			</form>
+		  </div>
 		</div>
+	  </div>
 	</div>
-		<div id="CreerFiliere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Créér une Filière</h2>
+		<div class="modal fade" id="CreerFiliere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="CreerFiliereNom">Créér une filière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
 					<div>
 					<label class="col-sm-3 control-label" for="nomFiliere">Nom de la filière</label>
-					<div class="col-sm-3">
+					<div class="col-sm-4">
 					<input type="text" name="nomFiliere" id="nomFiliere" class="form-control"/>
 					</div>
 					</div>
@@ -139,16 +151,22 @@
 					<input type="submit" name="validerCreationFiliere" value="Créer" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-		<div id="ConsulterFiliere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Consulter une Filière</h2>
+		<div class="modal fade" id="ConsulterFiliere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="ConsulterFiliereNom">Consulter une Filière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="filiere">Sélectionner la filère</label>
-							<div class="col-sm-3">
+						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
+							<div class="col-sm-4">
 							<select name="filiere" id="filiere" class="form-control">
 							</select>
 							</div>
@@ -157,16 +175,22 @@
 					<input type="submit" name="validerConsulterFiliere" value="Valider" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
-		</div>
-		<div id="SupprimerFiliere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Supprimer une Filière</h2>
+		  </div>
+		</div>	
+		<div class="modal fade" id="SupprimerFiliere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="SupprimerFiliereNom">Supprimer une Filière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="filiere">Supprimer la filère</label>
-							<div class="col-sm-3">
+						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
+							<div class="col-sm-4">
 							<select name="filiere" id="filiere" class="form-control">
 							</select>
 							</div>
@@ -175,24 +199,30 @@
 					<input type="submit" name="SupprimerFiliere" value="Supprimer" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-		<div id="CreerMatiere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Créér une matière</h2>
+		<div class="modal fade" id="CreerMatiere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="CreerMatiereNom">Créér une matière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="filiere">Sélectionner la filère</label>
-							<div class="col-sm-3">
+						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
+							<div class="col-sm-4">
 							<select name="filiere" id="filiere" class="form-control">
 							</select>
 							</div>
 							</div>
 						<div>
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="nomMatiere">Nom de la matière</label>
-					<div class="col-sm-3">
+					<label class="col-sm-4 control-label" for="nomMatiere">Nom de la matière</label>
+					<div class="col-sm-4">
 					<input type="text" name="nomMatiere" id="nomMatiere" class="form-control"/>
 					</div>
 					</div>
@@ -201,16 +231,22 @@
 					<input type="submit" name="validerCreationMatiere" value="Créer" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-		<div id="ConsulterMatiere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Consulter une matière</h2>
+		<div class="modal fade" id="ConsulterMatiere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="ConsulterMatiereNom">Consulter une matière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="matiere">Consulter une matière</label>
-							<div class="col-sm-3">
+						<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
+							<div class="col-sm-4">
 							<select name="matiere" id="matiere" class="form-control">
 							</select>
 							</div>
@@ -219,16 +255,22 @@
 					<input type="submit" name="validerConsultationMatiere" value="Valider" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-		<div id="SupprimerMatiere">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Supprimer une matière</h2>
+		<div class="modal fade" id="SupprimerMatiere" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="SupprimerMatiereNom">Supprimer une matière</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="matiere">Supprimer une matière</label>
-							<div class="col-sm-3">
+						<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
+							<div class="col-sm-4">
 							<select name="matiere" id="matiere" class="form-control">
 							</select>
 							</div>
@@ -237,16 +279,22 @@
 					<input type="submit" name="SupprimerMatiere" value="Supprimer" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
-		<div id="ConsulterEnseignement">
-			<div class="popup_block">
-				<a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="Button-close-icon.png"></a>
-				<h2>Consulter un Enseignement</h2>
+		<div class="modal fade" id="ConsulterEnseignement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="ConsulterEnseignementNom">Consulter un enseignement</h4>
+			  </div>
+			  <div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="enseignement">Sélectionner un enseignement</label>
-							<div class="col-sm-3">
+						<label class="col-sm-5 control-label" for="enseignement">Sélectionner un enseignement</label>
+							<div class="col-sm-4">
 							<select name="enseignement" id="enseignement" class="form-control">
 							</select>
 							</div>
@@ -255,7 +303,9 @@
 					<input type="submit" name="ValiderConsulterEnseignement" value="Valider" class="btn btn-primary"/>
 					</div>
 				</form>
+			  </div>
 			</div>
+		  </div>
 		</div>
  </section>
 
