@@ -57,7 +57,7 @@ function creerMatiere(){
 }
 
 function NomEnseignement(){
-	console.log(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value);
+	alert(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value);
 	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != "" && document.getElementById('Exam').checked==true){
 			document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - Exam";
 		}
