@@ -84,20 +84,20 @@
 				<div class="form-group">
 				<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
 				<div class="col-sm-4">
-				<select name="matiere" id="matiere" class="form-control">
+				<select onclick="NomEnseignement()" name="matiere" id="matiere" class="form-control">
 				</select>
 				</div>
 				</div>
 				<label class="col-sm-4 control-label" for="matiere">Sélectionner un type</label>
 				<div class="btn-group" data-toggle="buttons">
 				<label class="btn btn-primary">
-				<input type="radio" name="options" id="CM" autocomplete="off"> CM
+				<input onclick="NomEnseignement()" type="radio" name="options" id="CM" autocomplete="off"> CM
 			  </label>
 				<label class="btn btn-primary">
-				<input type="radio" name="options" id="TD" autocomplete="off"> TD
+				<input onclick="NomEnseignement()" type="radio" name="options" id="TD" autocomplete="off"> TD
 			  </label>
 			  <label class="btn btn-primary">
-				<input type="radio" name="options" id="Exam" autocomplete="off"> Examen
+				<input onclick="NomEnseignement()" type="radio" name="options" id="Exam" autocomplete="off"> Examen
 			  </label>
 			  </div>
 				<br />	
@@ -163,7 +163,7 @@
 				<h4 class="modal-title" id="ConsulterFiliereNom">Consulter une Filière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="get">
 					<div class="form-group">
 						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
 							<div class="col-sm-4">
@@ -211,7 +211,7 @@
 				<h4 class="modal-title" id="CreerMatiereNom">Créer une matière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal" method="post" action="creerMatiere">
+				<form class="form-horizontal" method="post" action="/creerMatiere">
 					<div class="form-group">
 						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
 							<div class="col-sm-4">
