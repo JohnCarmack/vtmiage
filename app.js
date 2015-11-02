@@ -75,8 +75,8 @@ app.use( bodyParser.urlencoded({ extended : true  }));
 
 
 var Matiere = sequelize.define('Matiere', {
-    nom: {type: Sequelize.STRING, unique: true},
-    description: Sequelize.TEXT
+    nom: {type: Sequelize.STRING, unique: false},
+    description: {type : Sequelize.TEXT, allowNull : true}
 },
  {
      instanceMethods: {
@@ -131,6 +131,7 @@ Matiere.belongsTo(Filiere);
 var mats = Matiere.all();
 var fils = Filiere.all();
 
+sequelize.sync();
 
 
 app.get('/', function(req, res) {
@@ -168,14 +169,45 @@ filierePost.save().then(function( filierePost){
 
 
 //Création d'une matiere avec le nom passé en parametre
-app.post('/creerMatiere', function(req, res){
+/*app.post('/creerMatiere', function(req, res){
 var matierePost = Matiere.build({ nom: req.body.nomMatiere});
 console.log(req.body.nomMatiere);
 //filierePost.save().then(function( filierePost){
   console.log("SAUVEGARDE DE : " + matierePost);
   //res.send('Filiere créée !');
   res.redirect('/');
+});*/
+
+app.post('/creerMatiere', function(req, res){
+console.log(req.body.nomMatiere);
+console.log(req.body.filiere);
+//var filierePost = req.body.filiere;
+
+//From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
+//req.body.nameFiliere that be linked to the Matiere,
+
+Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
+
+Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
+console.log(" Good Filiere : " + filiere);
+    return matiere.setFiliere(filiere);
+
 });
+res.redirect('/');
+});
+});
+
+//Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
+ // return Filiere.create({nom : req.body.filiere}).then(function (filiere) {
+//    var goodFiliere = Filiere.findOne().then(function(filiere){
+  //  where: {nom: req.body.filiere}
+
+//console.log(" Good Filiere : " + goodFiliere);
+  //  return matiere.setFiliere(goodFiliere);
+ // });
+//});
+//res.redirect('/');
+//});
 
 
 /*
