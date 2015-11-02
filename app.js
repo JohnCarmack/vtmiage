@@ -167,6 +167,16 @@ filierePost.save().then(function( filierePost){
 });
 
 
+//Création d'une matiere avec le nom passé en parametre
+app.post('/creerMatiere', function(req, res){
+var matierePost = Matiere.build({ nom: req.body.nomMatiere});
+console.log(req.body.nomMatiere);
+//filierePost.save().then(function( filierePost){
+  console.log("SAUVEGARDE DE : " + matierePost);
+  //res.send('Filiere créée !');
+  res.redirect('/');
+});
+
 
 /*
 app.get('/user/:email', function (req, res){
