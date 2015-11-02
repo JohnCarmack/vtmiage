@@ -59,7 +59,7 @@
           <ul class="dropdown-menu">
             <li><a href="#CreerEnseignement" data-toggle="modal" data-target="#CreerEnseignement">Créer un enseignement</a></li>
             <li><a href="#ConsulterEnseignement" data-toggle="modal" data-target="#ConsulterEnseignement">Consulter un enseignement</a></li>
-            <li><a href="#">Supprimer un enseignement</a></li>
+            <li><a href="#SupprimerEnseignement" data-toggle="modal" data-target="#SupprimerEnseignement">Supprimer un enseignement</a></li>
           </ul>
         </li>
             <li><a href="#">Séance</a></li>
@@ -301,6 +301,30 @@
 						</div>
 					<div>
 					<input type="submit" name="ValiderConsulterEnseignement" value="Valider" class="btn btn-primary"/>
+					</div>
+				</form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="modal fade" id="SupprimerEnseignement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="SupprimerEnseignementNom">Supprimer un enseignement</h4>
+			  </div>
+			  <div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-5 control-label" for="enseignement">Sélectionner un enseignement</label>
+							<div class="col-sm-4">
+							<select name="enseignement" id="enseignement" class="form-control">
+							</select>
+							</div>
+						</div>
+					<div>
+					<input type="submit" name="SupprimerEnseignement" value="Supprimer" class="btn btn-primary"/>
 					</div>
 				</form>
 			  </div>
