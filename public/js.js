@@ -56,14 +56,32 @@ function creerMatiere(){
 	);
 }
 
-function NomEnseignement(){
-	if(document.getElementById('Exam').checked=true && document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
-			document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - Exam";
-		}
-	if(document.getElementById('CM').checked==true && document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
+function NomEnseignementExam(){
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
+			document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - Examen";
+	}
+}
+
+function NomEnseignementCM(){
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
 		document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - CM";
 	}
-	if(document.getElementById('TD').checked==true && document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
+}
+
+function NomEnseignementTD(){
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != ""){
 		document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - TD";
+	}
+}
+
+function NomEnseignementSelect(){
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != "" && document.getElementById('CM').checked==true ){
+		document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - CM";
+	}
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != "" && document.getElementById('TD').checked==true ){
+		document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - TD";
+	}
+	if(document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value != "" && document.getElementById('Exam').checked==true ){
+		document.getElementById('nom_enseignement').value= document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].value + " - Examen";
 	}
 }
