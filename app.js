@@ -98,6 +98,14 @@ var Filiere = sequelize.define('Filiere', {
      }
  })
 
+var Enseignement = sequelize.define('Enseignement', {
+    nom: {type: Sequelize.STRING, unique: false},
+    typeEnseignement: {type : Sequelize.STRING, allowNull : true},
+    dureeEnseignement: {type : Sequelize.FLOAT},
+    dureeSeanceEnseignement: {type : Sequelize.FLOAT},
+    nombreSeanceParSemaine: {type : Sequelize.FLOAT}
+
+});
 
 
 //var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
