@@ -49,19 +49,6 @@ app.set( 'views',  __dirname + '/public/' );
 
 
 
-  // Middleware to compile `styl` files to `css`.
-  // For example, `assets/stylesheets/main.styl` will be compiled to `public/stylesheets/main.css`
-/*    app.use(stylus.middleware({
-    // Source directory
-	src: __dirname + '/public',
-        // Compile function
-	compile: function(str, path) {
-	    return stylus(str)
-		.set('filename', path)
-		.set('compress', true).use(nib());
-	}
-    }));*/
-
 
 
 //app.use( favicon( __dirname + '/public/favicon.ico' ));
@@ -133,8 +120,11 @@ var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
 );
 */
 sequelize.sync();
+
 Filiere.hasMany(Matiere);
 Matiere.belongsTo(Filiere);
+Enseignement.hasMany(Matiere);
+Matiere.belongsTo(Enseignement);
 //myMatiere.setFiliere(myFiliere);
 var mats = Matiere.all();
 var fils = Filiere.all();
@@ -174,6 +164,29 @@ filierePost.save().then(function( filierePost){
 //console.log(req.params.body['nom']);
 
 });
+
+
+app.post('/creerEnseignement', function(req, res){
+console.log(req.body.matiere);
+console.log(req.body.nom_enseignement);
+console.log(req.body.duree_enseignement);
+console.log(req.body.duree_seance_enseignement);
+console.log(req.body.nb_seance_semaine_enseignement);
+//var filierePost = req.body.filiere;
+
+//From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
+//req.body.nameFiliere that be linked to the Matiere,
+
+/*Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
+
+Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
+console.log(" Good Filiere : " + filiere);
+    return matiere.setFiliere(filiere);
+
+});*/
+res.redirect('/');
+});
+
 
 
 //Création d'une matiere avec le nom passé en parametre
