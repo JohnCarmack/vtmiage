@@ -15,4 +15,4 @@ Cette API détaillé dans notre wiki sera utilisée par un autre projet qui s'oc
 - Ajout du calendrier frond-end : Done
 - Implémentation de l'API : 80% Done
 - Implémentation de l'enseignement dans le calendrier : En cours
-- 
+
