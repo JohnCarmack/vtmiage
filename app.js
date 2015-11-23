@@ -151,7 +151,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/matiere', function(req,res){
-    res.send(mats);
+  Matiere.findAll().then(function (mats){
+res.send(mats);
+  });
+    
 });
 app.get('/matiere/:id', function(req,res){
     res.send("matiere " + req.params.id);

@@ -28,9 +28,9 @@ $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to b
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
-              for (i = 0; i< result.fulfillmentValue.length; i++){
+              for (i = 0; i< result.length; i++){
            document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += 
-	"<option>"+result.fulfillmentValue[i].nom+"</option>";
+	"<option>"+result[i].nom+"</option>";
               }
          
         }});	
