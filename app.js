@@ -153,20 +153,29 @@ app.get('/', function(req, res) {
 app.get('/matiere', function(req,res){
   Matiere.findAll().then(function (mats){
 res.send(mats);
-console.log(mats);
+//console.log(mats);
   });
-    
+
 });
 app.get('/matiere/:id', function(req,res){
     res.send("matiere " + req.params.id);
 });
-app.get('/enseignement', function(req,res){});
+
+//Récupération des enseignements 
+app.get('/enseignement', function(req,res){
+  Enseignement.findAll().then(function (enseignement){
+res.send(enseignement);
+//console.log(fils);
+  });
+});
+
+//Récupération d'un enseignement
 app.get('/enseignement/:id', function(req,res){});
 
 app.get('/filiere', function(req,res){
   Filiere.findAll().then(function (fils){
 res.send(fils);
-console.log(fils);
+//console.log(fils);
   });
 });
 
