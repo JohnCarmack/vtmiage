@@ -140,8 +140,8 @@ Enseignement.belongsTo(Matiere);
 Enseignement.hasMany(Seance);
 Seance.belongsTo(Enseignement);
 //myMatiere.setFiliere(myFiliere);
-var mats = Matiere.all();
-var fils = Filiere.all();
+//var mats = Matiere.all();
+//var fils = Filiere.all();
 
 sequelize.sync();
 
@@ -153,6 +153,7 @@ app.get('/', function(req, res) {
 app.get('/matiere', function(req,res){
   Matiere.findAll().then(function (mats){
 res.send(mats);
+console.log(mats);
   });
     
 });
@@ -163,7 +164,10 @@ app.get('/enseignement', function(req,res){});
 app.get('/enseignement/:id', function(req,res){});
 
 app.get('/filiere', function(req,res){
-    res.send(fils);
+  Filiere.findAll().then(function (fils){
+res.send(fils);
+console.log(fils);
+  });
 });
 
 app.get('/filiere/:id', function(req,res){});

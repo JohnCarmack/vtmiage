@@ -39,9 +39,9 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
-              for (j = 0; j< result.fulfillmentValue.length; j++){
+              for (j = 0; j< result.length; j++){
            document.getElementById('CreerMatiere').getElementsByTagName('select')[0].innerHTML += 
-	"<option>"+result.fulfillmentValue[j].nom+"</option>";
+	"<option>"+result[j].nom+"</option>";
               }
          
         }});		
