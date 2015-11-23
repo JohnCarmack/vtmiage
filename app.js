@@ -33,14 +33,14 @@ sequelize
   .authenticate()
   .then(function(err) {
     console.log('Connection has been established successfully.');
-  }, function (err) { 
+  }, function (err) {
     console.log('Unable to connect to the database:', err);
   });
 
 
 
 
-app.use(express.static(__dirname +  '/public')); 
+app.use(express.static(__dirname +  '/public'));
 // all environments
 //app.set( 'port', process.env.PORT || 3001 );
 //app.engine( 'html', engine );
@@ -48,19 +48,6 @@ app.set( 'views',  __dirname + '/public/' );
 //app.set( 'view engine', 'html' );
 
 
-
-  // Middleware to compile `styl` files to `css`.
-  // For example, `assets/stylesheets/main.styl` will be compiled to `public/stylesheets/main.css`
-/*    app.use(stylus.middleware({
-    // Source directory
-	src: __dirname + '/public',
-        // Compile function
-	compile: function(str, path) {
-	    return stylus(str)
-		.set('filename', path)
-		.set('compress', true).use(nib());
-	}
-    }));*/
 
 
 
@@ -98,6 +85,26 @@ var Filiere = sequelize.define('Filiere', {
      }
  })
 
+var Enseignement = sequelize.define('Enseignement', {
+    nom: {type: Sequelize.STRING, unique: false},
+    typeEnseignement: {type : Sequelize.STRING, allowNull : true},
+    dureeEnseignement: {type : Sequelize.FLOAT},
+    dureeSeanceEnseignement: {type : Sequelize.STRING},
+    nombreSeanceParSemaine: {type : Sequelize.FLOAT},
+    dateDebut: {type : Sequelize.STRING}
+
+});
+
+var Seance = sequelize.define('Seance', {
+    nom: {type: Sequelize.STRING, unique: false},
+    dateDebut: {type : Sequelize.STRING},
+    dateFin: {type : Sequelize.STRING},
+    professeure: {type : Sequelize.STRING},
+    salle : {type : Sequelize.STRING},
+    duree: {type : Sequelize.FLOAT}
+
+});
+
 
 
 //var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
@@ -113,7 +120,7 @@ var Filiere = sequelize.define('Filiere', {
     function(err) { console.log(err)}
 );
 */
-//matiere1.save();    
+//matiere1.save();
 
 //var filiere1 = Filiere.build({ nom: 'M2 Miage APP'});
 //filiere1.save();
@@ -124,9 +131,14 @@ var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
     function(err) { console.log(err)}
 );
 */
-sequelize.sync();
+//sequelize.sync();
+
 Filiere.hasMany(Matiere);
 Matiere.belongsTo(Filiere);
+Matiere.hasMany(Enseignement);
+Enseignement.belongsTo(Matiere);
+Enseignement.hasMany(Seance);
+Seance.belongsTo(Enseignement);
 //myMatiere.setFiliere(myFiliere);
 var mats = Matiere.all();
 var fils = Filiere.all();
@@ -135,7 +147,7 @@ sequelize.sync();
 
 
 app.get('/', function(req, res) {
-    res.render('index'); 
+    res.render('index');
 });
 
 app.get('/matiere', function(req,res){
@@ -166,6 +178,48 @@ filierePost.save().then(function( filierePost){
 //console.log(req.params.body['nom']);
 
 });
+
+
+app.post('/creerEnseignement', function(req, res){
+var matierePost = req.body.matiere;
+var nomEnseignement = req.body.nom_enseignement;
+var dureeEnseignement = req.body.duree_enseignement;
+var dureeSeanceEnseignement = req.body.duree_seance_enseignement;
+var nbSeanceSemaine = req.body.nb_seance_semaine_enseignement;
+var dateDebutEnseignement = req.body.date_deb_enseignement;
+
+
+console.log('Matiere selectionné ' + req.body.matiere);
+console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
+console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
+console.log('Duree seance enseignement ' + req.body.duree_seance_enseignement);
+console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
+console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
+//var filierePost = req.body.filiere;
+
+//From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
+//req.body.nameFiliere that be linked to the Matiere,
+
+Matiere.findOne({where:{nom: matierePost}}).then(function(matiere){
+
+Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
+console.log(" Good Matiere : " + matiere);
+    return enseignement.setMatiere(matiere);
+
+});
+res.redirect('/');
+});
+});
+
+/* var Enseignement = sequelize.define('Enseignement', {
+    nom: {type: Sequelize.STRING, unique: false},
+    typeEnseignement: {type : Sequelize.STRING, allowNull : true},
+    dureeEnseignement: {type : Sequelize.FLOAT},
+    dureeSeanceEnseignement: {type : Sequelize.FLOAT},
+    nombreSeanceParSemaine: {type : Sequelize.FLOAT},
+    dateDebut: {type : Sequelize.STRING}
+
+});*/
 
 
 //Création d'une matiere avec le nom passé en parametre
@@ -208,228 +262,6 @@ res.redirect('/');
 //});
 //res.redirect('/');
 //});
-
-
-/*
-app.get('/user/:email', function (req, res){
-var uEmail = req.params.email;
-  User.find({mail: uEmail},function(err, result) {
-    return res.json(result);
-  });
-console.log("Email: " + req.params.email);
-});
-*/
-
-
-/*
-//BY username ??
-app.get('/diagramme/byUser', function (req, res){
-var uuserName = req.session.user;//req.params.userName;
-  Diagramme.find({userName: uuserName},function(err, result) {
-    return res.json(result);
-  });
-console.log("userName: " + req.params.userName);
-});*/
-
-/*
-//by diagram  name not used
-app.get('/diagramme/byName/:diagrammeName', function(req, res){
-var udiagrammeName = req.params.diagrammeName;
-  Diagramme.find({diagrammeName: udiagrammeName},function(err, result) {
-    return res.json(result);
-  });
-console.log("diagrammeName: " + req.params.diagrammeName);
-
-})*/
-
-/*
-app.get('/user/:email/:diagramme', function (req, res){
-var uDiagramme = req.params.diagramme;
-var uEmail = req.params.email;
-
-  User.find({diagramme: uDiagramme},function(err, result) {
-    if(result == 0){
-      console.log("null"); 
-    }
-
-    return res.json(result);
-  });
-console.log("User diagram : " + req.params.diagramme);
-});*/
-
-/*
-app.get('/user/:email/:diagrammeID', function (req, res){
-var diagrammeID = req.body.diagrammeID;
-  User.findOne({'diagrammeID':diagrammeID},function(err, result) {
-    return res.json(result);
-  });
-  console.log(req.body.diagrammeID); 
-});
-*/
-/*
-app.get('/diagramme/:id', function (req, res){
-  return Diagramme.findOne(req.params.id, function (err, diagramme) {
-    if (!err) {
-  
-   res.json(diagramme);
-    } else {
-      return console.log(err);
-    }
-  });
-  console.log("id " + req.params.id);
-});
-
-app.get('/diagramme', function (req, res){
-  return Diagramme.find(function (err, diagramme) {
-    if (!err) {
-	
-	 res.json(diagramme);
-    } else {
-      return console.log(err);
-    }
-  });
-});
-
-app.post('/newDiagramme', function (req, res){
-  var diagramme;
-
-  console.log("POST: ");
-  console.log("Cells :" + req.body.cells);
- //console.log("userName : " + req.body.userName);
- console.log("diagrammeName : " + req.body.diagrammeName);
-  diagramme = new Diagramme({
-    cells: (req.body.cells),
-    userName : (req.session.user),
-    diagrammeName : (req.body.diagrammeName),
-
-  });
-
-  diagramme.save(function (err) {
-    if (!err) {
-      return console.log(typeof req.body.cells);
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send( diagramme);
-});
- 
-/*app.post('/newDiagramme', function ( req, res, next ){
-  new Diagramme({
-      cells : req.body
-      
-  }).save( function ( err, todo, count ){
-    if( err ) return next( err );
-
-  //  res.redirect( '/' );
-  res.end("yes");
-  });
-});
-*//*
-app.get('/diagramme/:id', function (req, res){
-console.log("calllllllleed");
-Diagramme.findById({_id: id}, function (err, dia) { 
-
-res.json(dia);
-});
-*/
-
-
-/* PUT /todos/:id */
-/*
-app.put('/save/byName/:diagrammeName', function(req, res, next) {
-  Diagramme.findByIdAndUpdate(req.body.diagrammeName, req.body.cells, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
-
-*/
-/*  return Diagramme.find(function (err, diagramme) {
-    if (!err) {
-//  res.contentType('image/jpg'); 
-   res.json(diagramme);
-   //res.json()
-//  res.render('user');
-    } else {
-      return console.log(err);
-    }
-  });*/
-//});
-//Register a user
-/*app.post('/newUser', function (req, res){
-  var userMail = req.body.mail;
-  var userPass = req.body.password;
-  console.log("POST: ");
-  console.log("Email: "+req.body.mail + "\nPassword: " + req.body.password);// + "\nDiagramme:" + JSON.stringify(req.body.diagramme["cells"]));
-  //Here we miss the diagram.cells part no ? yes but that's not required?
-  /*if(User.findOne({mail : userMail, password : userPass})){
-    console.log("already exist !!");
-
-  }
-  else {
-  user = new User({
-    mail: req.body.mail,
-    password: req.body.password,
-    //diagramme: req.body.diagramme["cells"]
-  });
-
-  user.save(function (err) {
-    if (!err) {
-      return console.log("created");
-      res.redirect('Inscription.html');
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.redirect('Inscription.html');
-//}
-});
-
-*/
-/*
-//login a user
-app.post('/login', function (req, res){
-  //console.log(req.body);
- User.findOne({mail : req.body.mail}, function(err, user){
-  if(!user){
-    res.json("Invalid user or password");
-  }
-  else {
-    if(req.body.password == user.password){
-      req.session.user = user;
-      res.redirect('/bibliotheques.html');
-    } 
-  
-    else {
-      res.send('error : invalid email or password');
-    }
-  }
-});
- 
-});
-
-// return js to send current username to client
-app.get('/user.js', function (req, res) {
-  if (req.session.user) res.send('var userName = "' + req.session.user.mail + '"');
-  else res.send('');
-});
-
-
-
-app.get('/user', function (req, res){
-  return User.find(function (err, user) {
-    if (!err) {
-//  res.contentType('image/jpg'); 
-   res.json(user);
-   //res.json()
-//  res.render('user');
-    } else {
-      return console.log(err);
-    }
-  });
-});*/
-
 // Routes
 /*
 app.use( routes.current_user );
