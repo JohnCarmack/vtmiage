@@ -4,8 +4,23 @@
         header: {
         left: 'prevYear,nextYear, prev,next, today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-		}
+        right: 'month,agendaWeek,agendaDay',
+		},
+		businessHours: true, 
+		editable: true,
+		events: [
+        {
+            title: 'My Event',
+            start: '2015-11-12',
+        }],
+		eventClick: function(calEvent, jsEvent, view) {
+		document.getElementById('nomSeance').placeholder=calEvent.title;
+        document.getElementById('LienSeance').click();
+
+        // change the border color just for fun
+        //$(this).css('border-color', 'red');
+
+    }
 		
     })
 
