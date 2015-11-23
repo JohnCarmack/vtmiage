@@ -41,28 +41,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Filière<span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Filière<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#CreerFiliere" data-toggle="modal" data-target="#CreerFiliere">Créer une filière</a></li>
             <li><a href="#ConsulterFiliere" data-toggle="modal" data-target="#ConsulterFiliere">Consulter une filière</a></li>
             <li><a href="#SupprimerFiliere" data-toggle="modal" data-target="#SupprimerFiliere">Supprimer une filière</a></li>
           </ul>
         </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Matière<span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Matière<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#CreerMatiere" data-toggle="modal" data-target="#CreerMatiere">Créer une matière</a></li>
             <li><a href="#ConsulterMatiere" data-toggle="modal" data-target="#ConsulterMatiere">Consulter une matière</a></li>
             <li><a href="#SupprimerMatiere" data-toggle="modal" data-target="#SupprimerMatiere">Supprimer une matière</a></li>
           </ul>
         </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enseignement<span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Enseignement<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#CreerEnseignement" data-toggle="modal" data-target="#CreerEnseignement">Créer un enseignement</a></li>
             <li><a href="#ConsulterEnseignement" data-toggle="modal" data-target="#ConsulterEnseignement">Consulter un enseignement</a></li>
             <li><a href="#SupprimerEnseignement" data-toggle="modal" data-target="#SupprimerEnseignement">Supprimer un enseignement</a></li>
           </ul>
         </li>
-            <li><a href="#">Séance</a></li>
+            <li><a id="LienSeance" href="#ModifierSeance" data-toggle="modal" data-target="#ModifierSeance">Séance</a></li>
           </ul>
         </div>
       </div>
@@ -82,13 +82,13 @@
       <div class="modal-body">
         <form class="form-horizontal" method="post">
 				<div class="form-group">
-				<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
+				<label class="col-sm-6 control-label" for="matiere">Sélectionner une matière</label>
 				<div class="col-sm-4">
 				<select name="matiere" id="matiere" class="form-control" onclick="NomEnseignementSelect()">
 				</select>
 				</div>
 				</div>
-				<label class="col-sm-4 control-label" for="matiere">Sélectionner un type</label>
+				<label class="col-sm-6 control-label" for="matiere">Sélectionner un type</label>
 				<div class="btn-group" data-toggle="buttons">
 				<label class="btn btn-primary" onmouseup="NomEnseignementCM()">
 				<input  type="radio" name="options" id="CM" autocomplete="off"> CM
@@ -103,23 +103,28 @@
 				<br />	
 				<br />
 				<div class="form-group">
-				<label class="col-sm-4 control-label" for="nom_enseignement">Nom de l'enseignement</label>
+				<label class="col-sm-6 control-label" for="nom_enseignement">Nom de l'enseignement</label>
 				<div class="col-sm-4">
 				<input type="text" name="nom_enseignement" id="nom_enseignement" class="form-control" />
 				</div>
 				</div>
 				<div class="form-group">
-				<label class="col-sm-4 control-label" for="duree_enseignement">Durée de l'enseignement</label>
+				<label class="col-sm-6 control-label" for="duree_enseignement">Date de début de l'enseignement</label>
+				<div class="col-sm-4">
+				<input type="date" name="duree_deb_enseignement" id="date_deb_enseignement" class="form-control"/></div>
+				</div>
+				<div class="form-group">
+				<label class="col-sm-6 control-label" for="duree_enseignement">Durée de l'enseignement</label>
 				<div class="col-sm-3">
 				<input type="number" name="duree_enseignement" id="duree_enseignement" class="form-control" size="3" min="0" max="99" placeholder="20"/></div><label class="col-sm-1 control-label" for="duree_enseignement"> Heures</label>
 				</div>
 				<div class="form-group">
-				<label class="col-sm-6 control-label" for="duree_seance_enseignement">Durée de la séance de l'enseignement</label>
+				<label class="col-sm-6 control-label" for="duree_seance_enseignement">Durée de la séance</label>
 				<div class="col-sm-3">
 				<input type="time" name="duree_seance_enseignement" id="duree_seance_enseignement" class="form-control" size="2"  placeholder="01"/></div><label class="col-sm-1 control-label" for="duree_seance_enseignement">Heures</label>
 				</div>
 				<div class="form-group">
-				<label  class="col-sm-8 control-label" for="nb_seance_semaine_enseignement">Nombre de séances par semaine de l'enseignement</label>
+				<label  class="col-sm-6 control-label" for="nb_seance_semaine_enseignement">Nombre de séances par semaine</label>
 				<div class="col-sm-2">
 				<input type="number" name="nb_seance_semaine_enseignement" id="nb_seance_semaine_enseignement" class="form-control" size="3" min="0" max="99" placeholder="2"/>
 				</div>
@@ -331,7 +336,56 @@
 			</div>
 		  </div>
 		</div>
+		<div class="modal fade" id="ModifierSeance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="CreerFiliereNom">Modifier une Séance</h4>
+			  </div>
+			  <div class="modal-body">
+				<form class="form-horizontal" method="put">
+					<div class="form-group">
+					<div>
+					<label class="col-sm-4 control-label" for="nomSeance">Nom de la séance</label>
+					<div class="col-sm-4">
+					<input type="text" name="nomSeance" id="nomSeance" class="form-control" readonly />
+					</div>
+					</div>
+					</div>
+					<div class="form-group">
+					<label class="col-sm-4 control-label" for="dureeSeance">Durée de la séance</label>
+					<div class="col-sm-4">
+					<input type="time" name="dureeSeance" id="dureeSeance" class="form-control"/>
+					</div>
+					</div>
+					<div class="form-group">
+					<div>
+					<label class="col-sm-4 control-label" for="professeurSeance">Professeur</label>
+					<div class="col-sm-4">
+					<input type="text" name="professeurSeance" id="professeurSeance" class="form-control" placeholder="Professeur"/>
+					</div>
+					</div>
+					</div>
+					<div class="form-group">
+					<div>
+					<label class="col-sm-4 control-label" for="salleSeance">Salle</label>
+					<div class="col-sm-4">
+					<input type="text" name="salleSeance" id="salleSeance" class="form-control" placeholder="Salle"/>
+					</div>
+					</div>
+					</div>
+					<div>
+					<input type="submit" name="ModifierSeanceName" value="Modifier" class="btn btn-primary" />
+					</div>
+				</form>
+				<input type="submit" id="SupprimerSeance" value="Supprimer" class="btn btn-primary" />
+			  </div>
+			</div>
+		  </div>
+		</div>
  </section>
+ 
 
   <footer>
 
