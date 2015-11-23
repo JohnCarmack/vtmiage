@@ -187,7 +187,7 @@ var dureeEnseignement = req.body.duree_enseignement;
 var dureeSeanceEnseignement = req.body.duree_seance_enseignement;
 var nbSeanceSemaine = req.body.nb_seance_semaine_enseignement;
 var dateDebutEnseignement = req.body.date_deb_enseignement;
-
+var nombreSeance = dureeEnseignement / parseFloat(dureeSeanceEnseignement.replace(':','.'));
 
 console.log('Matiere selectionné ' + req.body.matiere);
 console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
@@ -196,6 +196,8 @@ console.log('Duree seance enseignement ' + req.body.duree_seance_enseignement);
 console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
 console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
 //var filierePost = req.body.filiere;
+console.log(parseFloat(dureeSeanceEnseignement.replace(':','.')));
+console.log(nombreSeance);
 
 //From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
 //req.body.nameFiliere that be linked to the Matiere,
