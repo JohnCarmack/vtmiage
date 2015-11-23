@@ -89,10 +89,22 @@ var Enseignement = sequelize.define('Enseignement', {
     nom: {type: Sequelize.STRING, unique: false},
     typeEnseignement: {type : Sequelize.STRING, allowNull : true},
     dureeEnseignement: {type : Sequelize.FLOAT},
-    dureeSeanceEnseignement: {type : Sequelize.FLOAT},
-    nombreSeanceParSemaine: {type : Sequelize.FLOAT}
+    dureeSeanceEnseignement: {type : Sequelize.STRING},
+    nombreSeanceParSemaine: {type : Sequelize.FLOAT},
+    dateDebut: {type : Sequelize.STRING}
 
 });
+
+var Seance = sequelize.define('Seance', {
+    nom: {type: Sequelize.STRING, unique: false},
+    dateDebut: {type : Sequelize.STRING},
+    dateFin: {type : Sequelize.STRING},
+    professeure: {type : Sequelize.STRING},
+    salle : {type : Sequelize.STRING},
+    duree: {type : Sequelize.FLOAT}
+
+});
+
 
 
 //var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
@@ -119,12 +131,14 @@ var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
     function(err) { console.log(err)}
 );
 */
-sequelize.sync();
+//sequelize.sync();
 
 Filiere.hasMany(Matiere);
 Matiere.belongsTo(Filiere);
-Enseignement.hasMany(Matiere);
-Matiere.belongsTo(Enseignement);
+Matiere.hasMany(Enseignement);
+Enseignement.belongsTo(Matiere);
+Enseignement.hasMany(Seance);
+Seance.belongsTo(Enseignement);
 //myMatiere.setFiliere(myFiliere);
 var mats = Matiere.all();
 var fils = Filiere.all();
@@ -167,26 +181,45 @@ filierePost.save().then(function( filierePost){
 
 
 app.post('/creerEnseignement', function(req, res){
+var matierePost = req.body.matiere;
+var nomEnseignement = req.body.nom_enseignement;
+var dureeEnseignement = req.body.duree_enseignement;
+var dureeSeanceEnseignement = req.body.duree_seance_enseignement;
+var nbSeanceSemaine = req.body.nb_seance_semaine_enseignement;
+var dateDebutEnseignement = req.body.date_deb_enseignement;
+
+
 console.log('Matiere selectionné ' + req.body.matiere);
 console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
-console.log(req.body.duree_enseignement);
-console.log(req.body.duree_seance_enseignement);
-console.log(req.body.nb_seance_semaine_enseignement);
+console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
+console.log('Duree seance enseignement ' + req.body.duree_seance_enseignement);
+console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
+console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
 //var filierePost = req.body.filiere;
 
 //From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
 //req.body.nameFiliere that be linked to the Matiere,
 
-/*Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
+Matiere.findOne({where:{nom: matierePost}}).then(function(matiere){
 
-Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
-console.log(" Good Filiere : " + filiere);
-    return matiere.setFiliere(filiere);
+Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
+console.log(" Good Matiere : " + matiere);
+    return enseignement.setMatiere(matiere);
 
-});*/
+});
 res.redirect('/');
 });
+});
 
+/* var Enseignement = sequelize.define('Enseignement', {
+    nom: {type: Sequelize.STRING, unique: false},
+    typeEnseignement: {type : Sequelize.STRING, allowNull : true},
+    dureeEnseignement: {type : Sequelize.FLOAT},
+    dureeSeanceEnseignement: {type : Sequelize.FLOAT},
+    nombreSeanceParSemaine: {type : Sequelize.FLOAT},
+    dateDebut: {type : Sequelize.STRING}
+
+});*/
 
 
 //Création d'une matiere avec le nom passé en parametre
