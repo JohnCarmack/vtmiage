@@ -160,8 +160,6 @@ res.send(mats);
 app.get('/matiere/:id', function(req,res){
     res.send("matiere " + req.params.id);
 });
-
-//Récupération des enseignements 
 app.get('/enseignement', function(req,res){
   Enseignement.findAll().then(function (enseignement){
 res.send(enseignement);
@@ -169,7 +167,6 @@ res.send(enseignement);
   });
 });
 
-//Récupération d'un enseignement
 app.get('/enseignement/:id', function(req,res){});
 
 app.get('/filiere', function(req,res){
@@ -251,22 +248,33 @@ console.log(req.body.nomMatiere);
 });*/
 
 app.post('/creerMatiere', function(req, res){
-console.log(req.body.nomMatiere);
-console.log(req.body.filiere);
-//var filierePost = req.body.filiere;
+  console.log(req.body.nomMatiere);
+  console.log(req.body.filiere);
 
-//From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
-//req.body.nameFiliere that be linked to the Matiere,
-
-Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
-
-Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
-console.log(" Good Filiere : " + filiere);
-    return matiere.setFiliere(filiere);
-
+  Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
+    Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
+      console.log(" Good Filiere : " + filiere);
+      return matiere.setFiliere(filiere);
+    });
+    res.redirect('/');
+  });
 });
-res.redirect('/');
-});
+
+app.delete('/supprimerMatiere', function(req, res){
+  var nomMatiere = req.params.nomAuteur;
+  if(nomMatiere != null){
+  Matiere.destroy({
+    where: {
+      nom: nomMatiere,
+    }
+  }).then(function(){
+    console.log('la matiere : ' + nomMatiere + ' est supprimé de la base de donnée');
+  });
+          }
+  else {
+    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
+  }
+  res.redirect('/');
 });
 
 //Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
