@@ -300,6 +300,29 @@ app.delete('/supprimerfiliere/:filiere', function(req, res){
   //res.redirect('/');
 });
 
+
+
+//Supprime un enseignement avec le nom donné en parametre
+app.delete('/supprimerEnseignement/:enseignement', function(req, res){
+  var nomEnseignement = req.params.enseignement;
+  if(nomEnseignement != null){
+    Enseignement.destroy({
+      where: {
+        nom: nomEnseignement,
+      }
+    }).then(function(){
+      console.log('l enseignement : ' + nomEnseignement + ' est supprimé de la base de donnée');
+      res.redirect('/');
+    });
+  }
+  else {
+    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomEnseignement);
+    res.redirect('/');
+  }
+  //res.redirect('/');
+});
+
+
 //Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
 // return Filiere.create({nom : req.body.filiere}).then(function (filiere) {
 //    var goodFiliere = Filiere.findOne().then(function(filiere){
