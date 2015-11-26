@@ -1,4 +1,4 @@
-// mongoose setup
+﻿// mongoose setup
 //require( './db' );
 
 var express        = require( 'express' );
@@ -275,6 +275,26 @@ app.delete('/supprimerMatiere/:matiere', function(req, res){
   }
   else {
     console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
+    res.redirect('/');
+  }
+  //res.redirect('/');
+});
+
+//Supprime une filiere avec le nom donné en parametre
+app.delete('/supprimerfiliere/:filiere', function(req, res){
+  var nomFiliere = req.params.filiere;
+  if(nomFiliere != null){
+    Filiere.destroy({
+      where: {
+        nom: nomFiliere,
+      }
+    }).then(function(){
+      console.log('la filiere : ' + nomFiliere + ' est supprimé de la base de donnée');
+      res.redirect('/');
+    });
+  }
+  else {
+    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomFiliere);
     res.redirect('/');
   }
   //res.redirect('/');
