@@ -31,6 +31,10 @@ $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to b
               for (i = 0; i< result.length; i++){
            document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += 
 	"<option>"+result[i].nom+"</option>";
+			document.getElementById('SupprimerMatiere').getElementsByTagName('select')[0].innerHTML +=
+			  "<option>"+result[i].nom+"</option>";
+			  document.getElementById('ConsulterMatiere').getElementsByTagName('select')[0].innerHTML +=
+			  "<option>"+result[i].nom+"</option>";
               }
          
         }});	
@@ -42,6 +46,23 @@ $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to b
               for (j = 0; j< result.length; j++){
            document.getElementById('CreerMatiere').getElementsByTagName('select')[0].innerHTML += 
 	"<option>"+result[j].nom+"</option>";
+			document.getElementById('SupprimerFiliere').getElementsByTagName('select')[0].innerHTML +=
+			"<option>"+result[j].nom+"</option>";
+			document.getElementById('ConsulterFiliere').getElementsByTagName('select')[0].innerHTML +=
+			"<option>"+result[j].nom+"</option>";
+              }
+         
+        }});
+
+$.ajax({url: "/enseignement", success: function(result){ // putting "admin" need to be the pseudo log
+ 	// document.cookie ="username="+result[0].userName;
+ 	 // alert(result.toJSON());
+//console.log(result.fulfillmentValue[0].nom);
+              for (i = 0; x< result.length; i++){
+			document.getElementById('SupprimerEnseignement').getElementsByTagName('select')[0].innerHTML +=
+			  "<option>"+result[x].nom+"</option>";
+			  document.getElementById('ConsulterEnseignement').getElementsByTagName('select')[0].innerHTML +=
+			  "<option>"+result[x].nom+"</option>";
               }
          
         }});		
@@ -69,6 +90,30 @@ function creerMatiere(){
 			console.log(data,"succés");
 		}
 	);
+}
+
+function supprimerMatiere(){
+	$.ajax({url: "/matiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
+}
+
+function supprimerFiliere(){
+	$.ajax({url: "/filiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la filière ' + nom);}});
+}
+
+function supprimerEnseignement(){
+	$.ajax({url: "/enseignement/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé l\'enseignement ' + nom);}});
+}
+
+function consulterEnseignement(){
+	$.ajax({url: "/enseignement", type:"GET", success: function(result){alert('Vous avez bien consulté l\'enseignement ');}});
+}
+
+function consulterMatiere(){
+	$.ajax({url: "/matiere", type:"GET", success: function(result){alert('Vous avez bien consulté la matière ');}});
+}
+
+function consulterFiliere(){
+	$.ajax({url: "/filiere", type:"GET", success: function(result){alert('Vous avez bien consulté la filière ');}});
 }
 
 function NomEnseignementExam(){
