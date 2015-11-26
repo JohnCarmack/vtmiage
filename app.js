@@ -201,7 +201,9 @@ app.post('/creerEnseignement', function(req, res){
   var nbSeanceSemaine = req.body.nb_seance_semaine_enseignement;
   var dateDebutEnseignement = req.body.date_deb_enseignement;
   var nombreSeance = dureeEnseignement / parseFloat(dureeSeanceEnseignement.replace(':','.'));
-
+  var salleSeance = "112";
+  var prof = "fafa";
+  var dureeSeance = 3;
   console.log('Matiere selectionné ' + req.body.matiere);
   console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
   console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
@@ -220,7 +222,22 @@ app.post('/creerEnseignement', function(req, res){
     Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
       console.log(" Good Matiere : " + matiere);
       return enseignement.setMatiere(matiere);
+/*var Seance = sequelize.define('Seance', {
+  nom: {type: Sequelize.STRING, unique: false},
+  dateDebut: {type : Sequelize.STRING},
+  dateFin: {type : Sequelize.STRING},
+  professeure: {type : Sequelize.STRING},
+  salle : {type : Sequelize.STRING},
+  duree: {type : Sequelize.FLOAT}
 
+});
+*/
+    }).then(function(enseignement){
+      Seance.create({nom : nomEnseignement, dateDebut : dateDebutEnseignement, dateFin : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
+      .then(function(seance){
+        console.log("Creation SEANCE ");
+        return seance.setEnseignement(enseignement);
+      })
     });
     res.redirect('/');
   });
