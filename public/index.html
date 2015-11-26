@@ -168,7 +168,7 @@
 				<h4 class="modal-title" id="ConsulterFiliereNom">Consulter une Filière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal" method="get">
+				<form class="form-horizontal" method="get" action="javascript:consulterFiliere()">
 					<div class="form-group">
 						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
 							<div class="col-sm-4">
@@ -192,7 +192,7 @@
 				<h4 class="modal-title" id="SupprimerFiliereNom">Supprimer une Filière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="delete" action="javascript:supprimerFiliere()">
 					<div class="form-group">
 						<label class="col-sm-4 control-label" for="filiere">Sélectionner une filière</label>
 							<div class="col-sm-4">
@@ -248,7 +248,7 @@
 				<h4 class="modal-title" id="ConsulterMatiereNom">Consulter une matière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="get" action="javascript:consulterMatiere()">
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
 							<div class="col-sm-4">
@@ -272,7 +272,7 @@
 				<h4 class="modal-title" id="SupprimerMatiereNom">Supprimer une matière</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="delete" action="javascript:supprimerMatiere()">
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="matiere">Sélectionner une matière</label>
 							<div class="col-sm-4">
@@ -296,7 +296,7 @@
 				<h4 class="modal-title" id="ConsulterEnseignementNom">Consulter un enseignement</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="get" action="javascript:consulterEnseignement()">
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="enseignement">Sélectionner un enseignement</label>
 							<div class="col-sm-4">
@@ -320,7 +320,7 @@
 				<h4 class="modal-title" id="SupprimerEnseignementNom">Supprimer un enseignement</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="supprimer" action="javascript:supprimerEnseignement()">
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="enseignement">Sélectionner un enseignement</label>
 							<div class="col-sm-4">
