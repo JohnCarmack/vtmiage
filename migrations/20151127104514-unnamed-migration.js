@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-return queryInterface.createTable('users', { id: Sequelize.INTEGER });
+      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -13,7 +13,7 @@ return queryInterface.createTable('users', { id: Sequelize.INTEGER });
   },
 
   down: function (queryInterface, Sequelize) {
-return queryInterface.dropTable('users');
+    return queryInterface.dropTable('users');
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
