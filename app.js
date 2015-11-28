@@ -96,9 +96,9 @@ var Enseignement = sequelize.define('Enseignement', {
 });
 
 var Seance = sequelize.define('Seance', {
-  nom: {type: Sequelize.STRING, unique: false},
-  dateDebut: {type : Sequelize.STRING},
-  dateFin: {type : Sequelize.STRING},
+  title: {type: Sequelize.STRING, unique: false},
+  start: {type : Sequelize.STRING},
+  end: {type : Sequelize.STRING},
   professeure: {type : Sequelize.STRING},
   salle : {type : Sequelize.STRING},
   duree: {type : Sequelize.FLOAT}
@@ -233,7 +233,7 @@ app.post('/creerEnseignement', function(req, res){
 });
 */
     }).then(function(enseignement){
-      Seance.create({nom : nomEnseignement, dateDebut : dateDebutEnseignement, dateFin : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
+      Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
       .then(function(seance){
         console.log("Creation SEANCE ");
         return seance.setEnseignement(enseignement);
@@ -246,7 +246,7 @@ app.post('/creerEnseignement', function(req, res){
 //Récupére toutes les seances
 app.get('/seances', function(req, res){
   //console.log(req.body.nomMatiere);
-  console.log(req.body.filiere);
+//  console.log(" Recuperation des seances " + req.body.filiere);
 
   Seance.findAll().then(function(seances){
     res.send(seances);
@@ -257,7 +257,7 @@ app.get('/seances', function(req, res){
 app.get('/seance/:nom', function(req, res){
   //console.log(req.body.nomMatiere);
   var nomSeance = req.params.nom
-  console.log(req.params.nom);
+  console.log("Nom de la seance : " +  req.params.nom);
 
   Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
     res.send(seance);
