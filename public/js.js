@@ -6,13 +6,26 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay',
 		},
-		businessHours: true, 
+		businessHours: true,
 		editable: true,
-		events: [
+		events:'/seances' /*[
         {
             title: 'My Event',
             start: '2015-11-12',
-        }],
+        },{
+        title: 'AHAHAH',
+        start: '2015-11-28',
+        }
+    ]*/,
+    /*eventDataTransform: function (rawEventData) {
+                       return {
+                           id: rawEventData.id,
+                           title: rawEventData.nom,
+                           start: rawEventData.dateDebut,
+                           end: rawEventData.dateFin,
+                        //   url: rawEventData.url
+                       };
+                   }*/
 		eventClick: function(calEvent, jsEvent, view) {
 		document.getElementById('nomSeance').placeholder=calEvent.title;
         document.getElementById('LienSeance').click();
@@ -21,37 +34,37 @@
         //$(this).css('border-color', 'red');
 
     }
-		
-    })
+
+  });
 
 $.ajax({url: "/matiere", success: function(result){ // putting "admin" need to be the pseudo log
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
               for (i = 0; i< result.length; i++){
-           document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML += 
+           document.getElementById('CreerEnseignement').getElementsByTagName('select')[0].innerHTML +=
 	"<option>"+result[i].nom+"</option>";
 			document.getElementById('SupprimerMatiere').getElementsByTagName('select')[0].innerHTML +=
 			  "<option>"+result[i].nom+"</option>";
 			  document.getElementById('ConsulterMatiere').getElementsByTagName('select')[0].innerHTML +=
 			  "<option>"+result[i].nom+"</option>";
               }
-         
-        }});	
+
+        }});
 
 $.ajax({url: "/filiere", success: function(result){ // putting "admin" need to be the pseudo log
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
               for (j = 0; j< result.length; j++){
-           document.getElementById('CreerMatiere').getElementsByTagName('select')[0].innerHTML += 
+           document.getElementById('CreerMatiere').getElementsByTagName('select')[0].innerHTML +=
 	"<option>"+result[j].nom+"</option>";
 			document.getElementById('SupprimerFiliere').getElementsByTagName('select')[0].innerHTML +=
 			"<option>"+result[j].nom+"</option>";
 			document.getElementById('ConsulterFiliere').getElementsByTagName('select')[0].innerHTML +=
 			"<option>"+result[j].nom+"</option>";
               }
-         
+
         }});
 
 $.ajax({url: "/enseignement", success: function(result){ // putting "admin" need to be the pseudo log
@@ -64,9 +77,9 @@ $.ajax({url: "/enseignement", success: function(result){ // putting "admin" need
 			  document.getElementById('ConsulterEnseignement').getElementsByTagName('select')[0].innerHTML +=
 			  "<option>"+result[x].nom+"</option>";
               }
-         
-        }});		
-		
+
+        }});
+
 });
 
 // function creerfiliere(){
