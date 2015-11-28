@@ -243,6 +243,39 @@ app.post('/creerEnseignement', function(req, res){
   });
 });
 
+//Récupére toutes les seances
+app.get('/seances', function(req, res){
+  //console.log(req.body.nomMatiere);
+  console.log(req.body.filiere);
+
+  Seance.findAll().then(function(seances){
+    res.send(seances);
+});
+});
+
+//Récupére une séance avec le nom en parametre
+app.get('/seance/:nom', function(req, res){
+  //console.log(req.body.nomMatiere);
+  var nomSeance = req.params.nom
+  console.log(req.params.nom);
+
+  Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
+    res.send(seance);
+});
+});
+
+/*var Seance = sequelize.define('Seance', {
+  nom: {type: Sequelize.STRING, unique: false},
+  dateDebut: {type : Sequelize.STRING},
+  dateFin: {type : Sequelize.STRING},
+  professeure: {type : Sequelize.STRING},
+  salle : {type : Sequelize.STRING},
+  duree: {type : Sequelize.FLOAT}
+
+});
+*/
+
+
 /* var Enseignement = sequelize.define('Enseignement', {
 nom: {type: Sequelize.STRING, unique: false},
 typeEnseignement: {type : Sequelize.STRING, allowNull : true},
