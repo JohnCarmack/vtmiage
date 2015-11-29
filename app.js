@@ -311,28 +311,61 @@ app.post('/creerMatiere', function(req, res){
 });
 
 //Supprime une matiere avec le nom donné en parametre
-app.delete('/supprimerMatiere/:matiere', function(req, res){
-  var nomMatiere = req.params.matiere;
-  if(nomMatiere != null){
-    Matiere.destroy({
-      where: {
-        nom: nomMatiere,
+app.delete('/supprimerMatiere/:Suppmatiere', function(req, res){
+  var nomMatiere = req.params.Suppmatiere;
+  var idMatiere;
+  console.log('MATIERE : ' + nomMatiere + ' avec ID : ' + nomMatiere.id);
+
+
+
+  Matiere.findOne({where:{nom: nomMatiere}}).then(function(matiere){
+    Enseignement.findAll({where:{Matiereid: matiere.id}}).then(function(enseignement){
+      //res.redirect('/');
+
+      console.log('DANS RECHERCHE ENSEIGNEMENT');
+      for(var i = 0; i < enseignement.length; i++){
+        Seance.destroy({
+          where: {
+            EnseignementId : enseignement[i].id,
+          }
+        });
       }
     }).then(function(){
-      console.log('la matiere : ' + nomMatiere + ' est supprimé de la base de donnée');
-      res.redirect('/');
-    });
-  }
-  else {
-    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
-    res.redirect('/');
-  }
+      idMatiere = matiere.id;
+      console.log('ID DE LA MATIERE ' + matiere.id);
+      if(nomMatiere != null){
+        console.log('DANS LA BOUCLE ID MATIERE VAUT : ' + idMatiere);
+        Enseignement.destroy({
+          where: {
+            Matiereid: matiere.id,
+          }
+        }).then(function(){
+          console.log('la matiere : ' + nomMatiere + ' est supprimé de la base de donnée, now removing Enseignement...');
+          //res.redirect('/');
+          Matiere.destroy({
+            where : {
+              nom : nomMatiere,
+            }
+          });
+
+        })
+
+      }
+      else {
+        console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
+        res.redirect('/');
+      }
+
+    })
+  })
+
+
   //res.redirect('/');
 });
 
 //Supprime une filiere avec le nom donné en parametre
-app.delete('/supprimerfiliere/:filiere', function(req, res){
-  var nomFiliere = req.params.filiere;
+app.delete('/supprimerfiliere/:Suppfiliere', function(req, res){
+  var nomFiliere = req.params.Suppfiliere;
   if(nomFiliere != null){
     Filiere.destroy({
       where: {
@@ -353,8 +386,8 @@ app.delete('/supprimerfiliere/:filiere', function(req, res){
 
 
 //Supprime un enseignement avec le nom donné en parametre
-app.delete('/supprimerEnseignement/:enseignement', function(req, res){
-  var nomEnseignement = req.params.enseignement;
+app.delete('/supprimerEnseignement/:Suppenseignement', function(req, res){
+  var nomEnseignement = req.params.Suppenseignement;
   if(nomEnseignement != null){
     Enseignement.destroy({
       where: {
