@@ -6,6 +6,7 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay',
 		},
+		weekends:false;
 		businessHours: true,
 		editable: true,
 		events:'/seances' /*[
@@ -71,7 +72,7 @@ $.ajax({url: "/enseignement", success: function(result){ // putting "admin" need
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
-              for (i = 0; x< result.length; i++){
+              for (x = 0; x< result.length; i++){
 			document.getElementById('SupprimerEnseignement').getElementsByTagName('select')[0].innerHTML +=
 			  "<option>"+result[x].nom+"</option>";
 			  document.getElementById('ConsulterEnseignement').getElementsByTagName('select')[0].innerHTML +=
@@ -106,27 +107,30 @@ function creerMatiere(){
 }
 
 function supprimerMatiere(){
+	var nom = document.getElementsByName('matiere')[1].value;
 	$.ajax({url: "/matiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
 }
 
 function supprimerFiliere(){
+	var nom = document.getElementsByName('filiere')[1].value;
 	$.ajax({url: "/filiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la filière ' + nom);}});
 }
 
 function supprimerEnseignement(){
+	var nom = document.getElementsByName('enseignement')[1].value;
 	$.ajax({url: "/enseignement/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé l\'enseignement ' + nom);}});
 }
 
 function consulterEnseignement(){
-	$.ajax({url: "/enseignement", type:"GET", success: function(result){alert('Vous avez bien consulté l\'enseignement ');}});
+	$.ajax({url: "/seancesByEnseignement", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
 }
 
 function consulterMatiere(){
-	$.ajax({url: "/matiere", type:"GET", success: function(result){alert('Vous avez bien consulté la matière ');}});
+	$.ajax({url: "/seancesByMatiere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
 }
 
 function consulterFiliere(){
-	$.ajax({url: "/filiere", type:"GET", success: function(result){alert('Vous avez bien consulté la filière ');}});
+	$.ajax({url: "/seancesByFiliere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
 }
 
 function NomEnseignementExam(){
