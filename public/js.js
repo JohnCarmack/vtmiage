@@ -117,7 +117,7 @@ function supprimerFiliere(){
 
 function supprimerEnseignement(){
 	var nom = document.getElementsByName('enseignement')[1].value;
-	$.ajax({url: "/supprimerEnseignement/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé l\'enseignement ' + nom);}});
+	$.ajax({url: "/supprimerEnseignement/" + nom, type:"DELETE", success: function(result){/*alert('Vous avez bien supprimé l\'enseignement ' + nom);*/console.log(result);}});
 }
 
 function consulterEnseignement(){
