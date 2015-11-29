@@ -365,7 +365,7 @@ app.delete('/supprimerEnseignement/:enseignement', function(req, res){
       //res.redirect('/');
       Seance.destroy({
         where: {
-          nom : nomEnseignement,
+          title : nomEnseignement,
         }
       }).then(function(){
         console.log('SEANCE : ' + nomEnseignement + ' Supprimé de la base de donnée')
