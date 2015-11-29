@@ -1,4 +1,4 @@
-﻿// mongoose setup
+// mongoose setup
 //require( './db' );
 
 var express        = require( 'express' );
@@ -222,35 +222,35 @@ app.post('/creerEnseignement', function(req, res){
     Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
       console.log(" Good Matiere : " + matiere);
       return enseignement.setMatiere(matiere);
-/*var Seance = sequelize.define('Seance', {
-  nom: {type: Sequelize.STRING, unique: false},
-  dateDebut: {type : Sequelize.STRING},
-  dateFin: {type : Sequelize.STRING},
-  professeure: {type : Sequelize.STRING},
-  salle : {type : Sequelize.STRING},
-  duree: {type : Sequelize.FLOAT}
+      /*var Seance = sequelize.define('Seance', {
+      nom: {type: Sequelize.STRING, unique: false},
+      dateDebut: {type : Sequelize.STRING},
+      dateFin: {type : Sequelize.STRING},
+      professeure: {type : Sequelize.STRING},
+      salle : {type : Sequelize.STRING},
+      duree: {type : Sequelize.FLOAT}
 
-});
-*/
-    }).then(function(enseignement){
-      Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
-      .then(function(seance){
-        console.log("Creation SEANCE ");
-        return seance.setEnseignement(enseignement);
-      })
     });
-    res.redirect('/');
+    */
+  }).then(function(enseignement){
+    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
+    .then(function(seance){
+      console.log("Creation SEANCE ");
+      return seance.setEnseignement(enseignement);
+    })
   });
+  res.redirect('/');
+});
 });
 
 //Récupére toutes les seances
 app.get('/seances', function(req, res){
   //console.log(req.body.nomMatiere);
-//  console.log(" Recuperation des seances " + req.body.filiere);
+  //  console.log(" Recuperation des seances " + req.body.filiere);
 
   Seance.findAll().then(function(seances){
     res.send(seances);
-});
+  });
 });
 
 //Récupére une séance avec le nom en parametre
@@ -261,16 +261,16 @@ app.get('/seance/:nom', function(req, res){
 
   Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
     res.send(seance);
-});
+  });
 });
 
 /*var Seance = sequelize.define('Seance', {
-  nom: {type: Sequelize.STRING, unique: false},
-  dateDebut: {type : Sequelize.STRING},
-  dateFin: {type : Sequelize.STRING},
-  professeure: {type : Sequelize.STRING},
-  salle : {type : Sequelize.STRING},
-  duree: {type : Sequelize.FLOAT}
+nom: {type: Sequelize.STRING, unique: false},
+dateDebut: {type : Sequelize.STRING},
+dateFin: {type : Sequelize.STRING},
+professeure: {type : Sequelize.STRING},
+salle : {type : Sequelize.STRING},
+duree: {type : Sequelize.FLOAT}
 
 });
 */
@@ -377,7 +377,6 @@ app.delete('/supprimerEnseignement/:enseignement', function(req, res){
     console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomEnseignement);
     res.redirect('/');
   }
-  //res.redirect('/');
 });
 
 
