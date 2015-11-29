@@ -6,7 +6,6 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay',
 		},
-		weekends:false;
 		businessHours: true,
 		editable: true,
 		events:'/seances' /*[
@@ -72,7 +71,7 @@ $.ajax({url: "/enseignement", success: function(result){ // putting "admin" need
  	// document.cookie ="username="+result[0].userName;
  	 // alert(result.toJSON());
 //console.log(result.fulfillmentValue[0].nom);
-              for (x = 0; x< result.length; i++){
+              for (x = 0; x< result.length; x++){
 			document.getElementById('SupprimerEnseignement').getElementsByTagName('select')[0].innerHTML +=
 			  "<option>"+result[x].nom+"</option>";
 			  document.getElementById('ConsulterEnseignement').getElementsByTagName('select')[0].innerHTML +=
@@ -122,15 +121,15 @@ function supprimerEnseignement(){
 }
 
 function consulterEnseignement(){
-	$.ajax({url: "/seancesByEnseignement", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByEnseignement", type:"GET", success: function(result){$('#calendar').fullCalendar( 'removeEvents'); $('#calendar').fullCalendar('addEventSource', result );}});
 }
 
 function consulterMatiere(){
-	$.ajax({url: "/seancesByMatiere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByMatiere", type:"GET", success: function(result){$('#calendar').fullCalendar( 'removeEvents'); $('#calendar').fullCalendar('addEventSource', result );}});
 }
 
 function consulterFiliere(){
-	$.ajax({url: "/seancesByFiliere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByFiliere", type:"GET", success: function(result){$('#calendar').fullCalendar( 'removeEvents'); $('#calendar').fullCalendar('addEventSource', result );}});
 }
 
 function NomEnseignementExam(){
