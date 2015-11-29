@@ -122,15 +122,15 @@ function supprimerEnseignement(){
 }
 
 function consulterEnseignement(){
-	$.ajax({url: "/seancesByEnseignement", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByEnseignement", type:"GET", success: function(result){/*$('#calendar').fullCalendar({events:result});*/}});
 }
 
 function consulterMatiere(){
-	$.ajax({url: "/seancesByMatiere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByMatiere", type:"GET", success: function(result){/*$('#calendar').fullCalendar({events:result});*/}});
 }
 
 function consulterFiliere(){
-	$.ajax({url: "/seancesByFiliere", type:"GET", success: function(result){$('#calendar').fullCalendar({events:result});}});
+	$.ajax({url: "/seancesByFiliere", type:"GET", success: function(result){/*$('#calendar').fullCalendar({events:result});*/}});
 }
 
 function NomEnseignementExam(){
