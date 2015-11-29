@@ -361,8 +361,16 @@ app.delete('/supprimerEnseignement/:enseignement', function(req, res){
         nom: nomEnseignement,
       }
     }).then(function(){
-      console.log('l enseignement : ' + nomEnseignement + ' est supprimé de la base de donnée');
-      res.redirect('/');
+      console.log('l enseignement : ' + nomEnseignement + ' est supprimé de la base de donnée, now removing SEANCE');
+      //res.redirect('/');
+      Seance.destroy({
+        where: {
+          nom : nomEnseignement,
+        }
+      }).then(function(){
+        console.log('SEANCE : ' + nomEnseignement + ' Supprimé de la base de donnée')
+        res.redirect('/');
+      })
     });
   }
   else {
@@ -371,6 +379,8 @@ app.delete('/supprimerEnseignement/:enseignement', function(req, res){
   }
   //res.redirect('/');
 });
+
+
 
 
 //Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
