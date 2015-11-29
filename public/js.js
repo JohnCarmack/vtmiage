@@ -6,7 +6,6 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay',
 		},
-		weekends:false,
 		businessHours: true,
 		editable: true,
 		events:'/seances' /*[
