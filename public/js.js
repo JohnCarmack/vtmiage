@@ -107,17 +107,17 @@ function creerMatiere(){
 
 function supprimerMatiere(){
 	var nom = document.getElementsByName('matiere')[1].value;
-	$.ajax({url: "/matiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
+	$.ajax({url: "/supprimerMatiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
 }
 
 function supprimerFiliere(){
 	var nom = document.getElementsByName('filiere')[1].value;
-	$.ajax({url: "/filiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la filière ' + nom);}});
+	$.ajax({url: "/supprimerfiliere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la filière ' + nom);}});
 }
 
 function supprimerEnseignement(){
 	var nom = document.getElementsByName('enseignement')[1].value;
-	$.ajax({url: "/enseignement/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé l\'enseignement ' + nom);}});
+	$.ajax({url: "/supprimerEnseignement/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé l\'enseignement ' + nom);}});
 }
 
 function consulterEnseignement(){
