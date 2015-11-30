@@ -26,6 +26,14 @@
                         //   url: rawEventData.url
                        };
                    }*/
+  /*  eventRender: function(event){
+      return (event.ranges.filter(function(range){ // test event against all the ranges
+
+          return (event.start.isBefore(range.end) &&
+                   event.end.isAfter(range.start));
+
+        }).length)>0; //if it isn't in one of the ranges, don't render it (by returning false)
+      },*/
 		eventClick: function(calEvent, jsEvent, view) {
 		document.getElementById('nomSeance').placeholder=calEvent.title;
         document.getElementById('LienSeance').click();

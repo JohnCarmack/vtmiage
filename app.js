@@ -101,6 +101,9 @@ var Seance = sequelize.define('Seance', {
   end: {type : Sequelize.STRING},
   professeure: {type : Sequelize.STRING},
   salle : {type : Sequelize.STRING},
+  dow : { type : Sequelize.STRING},
+  ranges : { type : Sequelize.STRING},
+
   duree: {type : Sequelize.FLOAT}
 
 });
@@ -200,10 +203,54 @@ app.post('/creerEnseignement', function(req, res){
   var dureeSeanceEnseignement = req.body.duree_seance_enseignement;
   var nbSeanceSemaine = req.body.nb_seance_semaine_enseignement;
   var dateDebutEnseignement = req.body.date_deb_enseignement;
-  var nombreSeance = dureeEnseignement / parseFloat(dureeSeanceEnseignement.replace(':','.'));
+  dateDebutEnseignement += ":00";
+  var parse = dureeSeanceEnseignement.split(':');
+  var nombreSeance = dureeEnseignement / ((parseFloat(parse[0])) + (((parseFloat(parse[1]))/60)));
   var salleSeance = "112";
   var prof = "fafa";
   var dureeSeance = 3;
+  var dateSplit = dateDebutEnseignement.split('T');
+  //console.log(dateSplit[1]);
+  var minuteSplit = dateSplit[1].split(':');
+  var heure = parseFloat(minuteSplit[0])+parseFloat(parse[0]);
+  var minute = parseFloat(minuteSplit[1])+parseFloat(parse[1]);
+  var dateFinEnseignement = dateSplit[0]+"T"+heure+":"+minute+":00";
+  var lundi = req.body.Lundi;
+  var mardi = req.body.Mardi;
+  var mercredi = req.body.Mercredi;
+  var jeudi = req.body.Jeudi;
+  var vendredi = req.body.Vendredi;
+  var samedi = req.body.Samedi;
+  var listeSemaine = [lundi,mardi,mercredi,jeudi,vendredi,samedi];
+  var jourSemaine = "[";
+  for(var i=0;i<listeSemaine.length;i++){
+    if(listeSemaine[i] != undefined){
+      console.log(listeSemaine[i]);
+     jourSemaine += listeSemaine[i];}
+  }
+  jourSemaine += "]";
+
+  var nbSemaine = nombreSeance / nbSeanceSemaine;
+  var dateFinRange = nbSemaine*7;
+
+  var split_date = dateSplit[0].split('-');
+     // Les mois vont de 0 a 11 donc on enleve 1, cast avec *1
+     var new_date = new Date(split_date[0], split_date[1]*1 - 1, split_date[2]*1 + dateFinRange);
+     var new_day = new_date.getDate();
+         new_day = ((new_day < 10) ? '0' : '') + new_day; // ajoute un zéro devant pour la forme
+     var new_month = new_date.getMonth() + 1;
+         new_month = ((new_month < 10) ? '0' : '') + new_month; // ajoute un zéro devant pour la forme
+     var new_year = new_date.getYear();
+         new_year = ((new_year < 200) ? 1900 : 0) + new_year; // necessaire car IE et FF retourne pas la meme chose
+     var new_date_text = new_year + '-' + new_month + '-' + new_day;
+
+
+  console.log('nb semaine :'+nbSemaine);
+  var RangeDateDeb = 'start:"'+dateSplit[0]+'"';
+
+  var RangeDateFin = 'end:"'+new_date_text+'"';
+  var Range = "[{"+RangeDateDeb+", "+RangeDateFin+"}]";
+  console.log(dateFinEnseignement);
   console.log('Matiere selectionné ' + req.body.matiere);
   console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
   console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
@@ -211,9 +258,9 @@ app.post('/creerEnseignement', function(req, res){
   console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
   console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
   //var filierePost = req.body.filiere;
-  console.log(parseFloat(dureeSeanceEnseignement.replace(':','.')));
-  console.log(nombreSeance);
-
+  console.log(parse[0]+" : "+parse[1]);
+  console.log('Nb de seance ' + nombreSeance);
+  console.log(jourSemaine);
   //From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
   //req.body.nameFiliere that be linked to the Matiere,
 
@@ -233,7 +280,12 @@ app.post('/creerEnseignement', function(req, res){
     });
     */
   }).then(function(enseignement){
-    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateDebutEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance})
+    console.log('DANS FUNCTION CREATION SEANCE');
+  //  var dateFinEnseignement = new date("dateDebutEnseignement");
+  //  dateFinEnseignement = dateFinEnseignement.getDate()+1;
+      //console.log('YOUHOU');
+    //console.log('date de fin de seance ' + dateFinEnseignement);
+    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, ranges : Range})
     .then(function(seance){
       console.log("Creation SEANCE ");
       return seance.setEnseignement(enseignement);
