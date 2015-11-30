@@ -99,7 +99,7 @@ var Seance = sequelize.define('Seance', {
   title: {type: Sequelize.STRING, unique: false},
   start: {type : Sequelize.STRING},
   end: {type : Sequelize.STRING},
-  professeure: {type : Sequelize.STRING},
+  professeur: {type : Sequelize.STRING},
   salle : {type : Sequelize.STRING},
   dow : { type : Sequelize.STRING},
   ranges : { type : Sequelize.STRING},
@@ -266,8 +266,8 @@ app.post('/creerEnseignement', function(req, res){
 
   Matiere.findOne({where:{nom: matierePost}}).then(function(matiere){
 
-    Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
       console.log(" Good Matiere : " + matiere);
+    Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
       return enseignement.setMatiere(matiere);
       /*var Seance = sequelize.define('Seance', {
       nom: {type: Sequelize.STRING, unique: false},
@@ -285,7 +285,7 @@ app.post('/creerEnseignement', function(req, res){
   //  dateFinEnseignement = dateFinEnseignement.getDate()+1;
       //console.log('YOUHOU');
     //console.log('date de fin de seance ' + dateFinEnseignement);
-    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeure : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, ranges : Range})
+    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeur : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, ranges : Range})
     .then(function(seance){
       console.log("Creation SEANCE ");
       return seance.setEnseignement(enseignement);
@@ -308,14 +308,33 @@ app.get('/seances', function(req, res){
 //Récupére une séance avec le nom en parametre
 app.get('/seance/:nom', function(req, res){
   //console.log(req.body.nomMatiere);
+/*  Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
+    res.send(seance);
+    console.log('UNE SEANCE ' + seance);
+
+  });
+*/
   var nomSeance = req.params.nom
+  console.log("Nom de la seance : " +  nomSeance);
+Seance.findOne({where : { title : nomSeance}}).then(function(seance){
+  res.send(seance);
+})
+
+});
+//Met à jour une seance
+app.put('/Updateseance/:nom', function(req, res){
+  var nomSeance = req.params.nom;
+  var nomProf = req.params.professeur;
+  var nomSalle = req.params.salle;
+  var nomDuree = req.params.duree;
   console.log("Nom de la seance : " +  req.params.nom);
 
-  Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
-    res.send(seance);
+  Seance.update({where:{nom: nomSeance}}).then(function(seance){
+    professeur : nomProf
+    salle : nomSalle
+    duree : nomDuree
   });
 });
-
 /*var Seance = sequelize.define('Seance', {
 nom: {type: Sequelize.STRING, unique: false},
 dateDebut: {type : Sequelize.STRING},
