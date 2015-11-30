@@ -1,6 +1,7 @@
 ﻿$(document).ready(function() {
 
     $('#calendar').fullCalendar({
+      defaultDate : moment(),
         header: {
         left: 'prevYear,nextYear, prev,next, today',
         center: 'title',
@@ -26,7 +27,7 @@
                         //   url: rawEventData.url
                        };
                    }*/
-  /*  eventRender: function(event){
+    /*eventRender: function(event){
       return (event.ranges.filter(function(range){ // test event against all the ranges
 
           return (event.start.isBefore(range.end) &&
