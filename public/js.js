@@ -39,6 +39,8 @@
       },
 		eventClick: function(calEvent, jsEvent, view) {
 		document.getElementById('nomSeance').placeholder=calEvent.title;
+    document.getElementById('professeurSeance').value = calEvent.professeur;
+    document.getElementById('salleSeance').value = calEvent.salle;
         document.getElementById('LienSeance').click();
 
         // change the border color just for fun
@@ -116,9 +118,17 @@ function creerMatiere(){
 	);
 }
 
+function modifierSeance(){
+var nomSeance = document.getElementById('nomSeance').placeholder;
+var nomProf = document.getElementById('professeurSeance').value;
+var salleSeance = document.getElementById('salleSeance').value;
+console.log('NOM SEANCE ' + nomSeance);
+  $.ajax({url: "/Updateseance/" + nomSeance + "/"+ nomProf + "/" + salleSeance, type:"PUT", success: function(result){alert('Vous avez bien modifié la séance ' + nomSeance);}});
+}
+
 function supprimerMatiere(){
 	var nom = document.getElementById('Suppmatiere').value;
-	$.ajax({url: "/supprimerMatiere/" + nom, type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
+	$.ajax({url: "/supprimerMatiere/" + nom , type:"DELETE", success: function(result){alert('Vous avez bien supprimé la matière ' + nom);}});
 }
 
 function supprimerFiliere(){
