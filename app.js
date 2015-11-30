@@ -1,25 +1,18 @@
-// mongoose setup
-//require( './db' );
-
 var express        = require( 'express' );
 var http           = require( 'http' );
 var path           = require( 'path' );
 var fs             = require('fs');
 var stylus         = require('stylus');
 var session = require('client-sessions');
-//var engine         = require( 'jade' );
-//var favicon        = require( 'serve-favicon' );
-//var cookieParser   = require( 'cookie-parser' );
+
 var bodyParser     = require( 'body-parser' );
-//var methodOverride = require( 'method-override' );
+
 var logger         = require( 'morgan' );
-//var errorHandler   = require( 'errorhandler' );
+
 var static         = require( 'serve-static' );
-//var mongoose = require('mongoose');
+
 var app    = express();
-//var routes = require( './routes' );
-//var Diagramme = mongoose.model('diagramme','diagramme');
-//var User = mongoose.model('User','user');
+
 var router = express.Router();
 var nib = require('nib');
 var Sequelize = require('sequelize');
@@ -39,28 +32,22 @@ sequelize
 
 
 
-
+//Permet de rendre les fichiers html
 app.use(express.static(__dirname +  '/public'));
-// all environments
-//app.set( 'port', process.env.PORT || 3001 );
-//app.engine( 'html', engine );
 app.set( 'views',  __dirname + '/public/' );
-//app.set( 'view engine', 'html' );
 
 
 
 
 
-//app.use( favicon( __dirname + '/public/favicon.ico' ));
+
 app.use( logger( 'dev' ));
 app.set('json spaces', 4);
-//app.use(methodOverride());
-//app.use( cookieParser());
 app.use( bodyParser.json());
 app.use( bodyParser.urlencoded({ extended : true  }));
 
 
-
+//Définition des models SQL
 var Matiere = sequelize.define('Matiere', {
   nom: {type: Sequelize.STRING, unique: false},
   description: {type : Sequelize.TEXT, allowNull : true}
@@ -108,74 +95,50 @@ var Seance = sequelize.define('Seance', {
 
 });
 
-
-
-//var matiere1 = Matiere.build({ nom: 'Math', description: 'analyse numerique pour la fac' });
-
-
-//filiere1.setMatiere('matiere1');
-
-//myFiliere.setMatiere(myMatiere);
-
-
-/*var myMatiere = Matiere.find({where :{nom: 'Math'}}).then(
-function(matiere) { console.log("matiere trouvee") },
-function(err) { console.log(err)}
-);
-*/
-//matiere1.save();
-
-//var filiere1 = Filiere.build({ nom: 'M2 Miage APP'});
-//filiere1.save();
-
-/*
-var myFiliere = Filiere.find({where :{nom: 'M2 Miage APP'}}).then(
-function(filiere) { console.log("filiere trouvee") },
-function(err) { console.log(err)}
-);
-*/
-//sequelize.sync();
-
+//Définitions des associations
 Filiere.hasMany(Matiere);
 Matiere.belongsTo(Filiere);
 Matiere.hasMany(Enseignement);
 Enseignement.belongsTo(Matiere);
 Enseignement.hasMany(Seance);
 Seance.belongsTo(Enseignement);
-//myMatiere.setFiliere(myFiliere);
-//var mats = Matiere.all();
-//var fils = Filiere.all();
 
+//Synchronisation de la base de données
 sequelize.sync();
 
-
+//Rendu de l'index.html
 app.get('/', function(req, res) {
   res.render('index');
 });
 
+
+//Récupere les matieres en base de données
 app.get('/matiere', function(req,res){
   Matiere.findAll().then(function (mats){
     res.send(mats);
-    //console.log(mats);
   });
 
 });
+
+//Récupere une matiere
 app.get('/matiere/:id', function(req,res){
   res.send("matiere " + req.params.id);
 });
+
+//Récupere les enseignements en base de données
 app.get('/enseignement', function(req,res){
   Enseignement.findAll().then(function (enseignement){
     res.send(enseignement);
-    //console.log(fils);
   });
 });
 
+//Récupere un enseignement
 app.get('/enseignement/:id', function(req,res){});
 
+//Récupere les filieres en base de données
 app.get('/filiere', function(req,res){
   Filiere.findAll().then(function (fils){
     res.send(fils);
-    //console.log(fils);
   });
 });
 
@@ -187,15 +150,13 @@ app.post('/creerFiliere', function(req, res){
   console.log(req.body.nomFiliere);
   filierePost.save().then(function( filierePost){
     console.log("SAUVEGARDE DE : " + filierePost);
-    //res.send('Filiere créée !');
     res.redirect('/');
   });
-  //console.log(req.params)
-  //console.log(req.params.body['nom']);
 
 });
 
 
+//Création d'un enseignement
 app.post('/creerEnseignement', function(req, res){
   var matierePost = req.body.matiere;
   var nomEnseignement = req.body.nom_enseignement;
@@ -226,113 +187,94 @@ app.post('/creerEnseignement', function(req, res){
   for(var i=0;i<listeSemaine.length;i++){
     if(listeSemaine[i] != undefined){
       console.log(listeSemaine[i]);
-     jourSemaine += listeSemaine[i];}
-  }
-  jourSemaine += "]";
+      jourSemaine += listeSemaine[i];}
+    }
+    jourSemaine += "]";
 
-  var nbSemaine = nombreSeance / nbSeanceSemaine;
-  var dateFinRange = nbSemaine*7;
+    var nbSemaine = nombreSeance / nbSeanceSemaine;
+    var dateFinRange = nbSemaine*7;
 
-  var split_date = dateSplit[0].split('-');
-     // Les mois vont de 0 a 11 donc on enleve 1, cast avec *1
-     var new_date = new Date(split_date[0], split_date[1]*1 - 1, split_date[2]*1 + dateFinRange);
-     var new_day = new_date.getDate();
-         new_day = ((new_day < 10) ? '0' : '') + new_day; // ajoute un zéro devant pour la forme
-     var new_month = new_date.getMonth() + 1;
-         new_month = ((new_month < 10) ? '0' : '') + new_month; // ajoute un zéro devant pour la forme
-     var new_year = new_date.getYear();
-         new_year = ((new_year < 200) ? 1900 : 0) + new_year; // necessaire car IE et FF retourne pas la meme chose
-     var new_date_text = new_year + '-' + new_month + '-' + new_day;
+    var split_date = dateSplit[0].split('-');
+    // Les mois vont de 0 a 11 donc on enleve 1, cast avec *1
+    var new_date = new Date(split_date[0], split_date[1]*1 - 1, split_date[2]*1 + dateFinRange);
+    var new_day = new_date.getDate();
+    new_day = ((new_day < 10) ? '0' : '') + new_day; // ajoute un zéro devant pour la forme
+    var new_month = new_date.getMonth() + 1;
+    new_month = ((new_month < 10) ? '0' : '') + new_month; // ajoute un zéro devant pour la forme
+    var new_year = new_date.getYear();
+    new_year = ((new_year < 200) ? 1900 : 0) + new_year; // necessaire car IE et FF retourne pas la meme chose
+    var new_date_text = new_year + '-' + new_month + '-' + new_day;
 
 
-  console.log('nb semaine :'+nbSemaine);
-  var RangeDateDeb = '"'+dateSplit[0]+'"';
+    console.log('nb semaine :'+nbSemaine);
+    var RangeDateDeb = '"'+dateSplit[0]+'"';
 
-  var RangeDateFin = '"'+new_date_text+'"';
-  //var Range = "[{"+RangeDateDeb+", "+RangeDateFin+"}]";
-  console.log(dateFinEnseignement);
-  console.log('Matiere selectionné ' + req.body.matiere);
-  console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
-  console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
-  console.log('Duree seance enseignement ' + req.body.duree_seance_enseignement);
-  console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
-  console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
-  //var filierePost = req.body.filiere;
-  console.log(parse[0]+" : "+parse[1]);
-  console.log('Nb de seance ' + nombreSeance);
-  console.log(jourSemaine);
-  //From here i received two variable   : req.body.nameMatiere for the name of the Matiere and
-  //req.body.nameFiliere that be linked to the Matiere,
+    var RangeDateFin = '"'+new_date_text+'"';
+    //var Range = "[{"+RangeDateDeb+", "+RangeDateFin+"}]";
+    console.log(dateFinEnseignement);
+    console.log('Matiere selectionné ' + req.body.matiere);
+    console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
+    console.log(' Durée de l\'enseignement ' + req.body.duree_enseignement);
+    console.log('Duree seance enseignement ' + req.body.duree_seance_enseignement);
+    console.log('Nombre seance semaine enseignement ' + req.body.nb_seance_semaine_enseignement);
+    console.log('Date debut enseignement ' + req.body.date_deb_enseignement);
+    //var filierePost = req.body.filiere;
+    console.log(parse[0]+" : "+parse[1]);
+    console.log('Nb de seance ' + nombreSeance);
+    console.log(jourSemaine);
 
-  Matiere.findOne({where:{nom: matierePost}}).then(function(matiere){
+    Matiere.findOne({where:{nom: matierePost}}).then(function(matiere){
 
       console.log(" Good Matiere : " + matiere);
-    Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
-      return enseignement.setMatiere(matiere);
-      /*var Seance = sequelize.define('Seance', {
-      nom: {type: Sequelize.STRING, unique: false},
-      dateDebut: {type : Sequelize.STRING},
-      dateFin: {type : Sequelize.STRING},
-      professeure: {type : Sequelize.STRING},
-      salle : {type : Sequelize.STRING},
-      duree: {type : Sequelize.FLOAT}
-
+      Enseignement.create({nom : nomEnseignement, dureeEnseignement : dureeEnseignement, dureeSeanceEnseignement : dureeSeanceEnseignement, nombreSeanceParSemaine :nbSeanceSemaine, dateDebut : dateDebutEnseignement}).then(function (enseignement) {
+        return enseignement.setMatiere(matiere);
+      }).then(function(enseignement){
+        console.log('DANS FUNCTION CREATION SEANCE');
+        //  var dateFinEnseignement = new date("dateDebutEnseignement");
+        //  dateFinEnseignement = dateFinEnseignement.getDate()+1;
+        //console.log('YOUHOU');
+        //console.log('date de fin de seance ' + dateFinEnseignement);
+        Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeur : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, rangeStart : RangeDateDeb, rangeEnd : RangeDateFin})
+        .then(function(seance){
+          console.log("Creation SEANCE ");
+          return seance.setEnseignement(enseignement);
+        })
+      });
+      res.redirect('/');
     });
-    */
-  }).then(function(enseignement){
-    console.log('DANS FUNCTION CREATION SEANCE');
-  //  var dateFinEnseignement = new date("dateDebutEnseignement");
-  //  dateFinEnseignement = dateFinEnseignement.getDate()+1;
-      //console.log('YOUHOU');
-    //console.log('date de fin de seance ' + dateFinEnseignement);
-    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeur : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, rangeStart : RangeDateDeb, rangeEnd : RangeDateFin})
-    .then(function(seance){
-      console.log("Creation SEANCE ");
-      return seance.setEnseignement(enseignement);
+  });
+
+  //Récupére toutes les seances
+  app.get('/seances', function(req, res){
+    Seance.findAll().then(function(seances){
+      res.send(seances);
+    });
+  });
+
+  //Récupére une séance avec le nom en parametre
+  app.get('/seance/:nom', function(req, res){
+    var nomSeance = req.params.nom;
+
+    console.log("Nom de la seance : " +  nomSeance);
+
+    Seance.findOne({where : { title : nomSeance}}).then(function(seance){
+      res.send(seance);
     })
-  });
-  res.redirect('/');
-});
-});
-
-//Récupére toutes les seances
-app.get('/seances', function(req, res){
-  //console.log(req.body.nomMatiere);
-  //  console.log(" Recuperation des seances " + req.body.filiere);
-
-  Seance.findAll().then(function(seances){
-    res.send(seances);
-  });
-});
-
-//Récupére une séance avec le nom en parametre
-app.get('/seance/:nom', function(req, res){
-  //console.log(req.body.nomMatiere);
-/*  Seance.findOne({where:{nom: nomSeance}}).then(function(seance){
-    res.send(seance);
-    console.log('UNE SEANCE ' + seance);
 
   });
-*/
-  var nomSeance = req.params.nom
-  console.log("Nom de la seance : " +  nomSeance);
-Seance.findOne({where : { title : nomSeance}}).then(function(seance){
-  res.send(seance);
-})
 
-});
-//Met à jour une seance
-app.put('/Updateseance/:nomSeance/:professeurSeance/:salleSeance', function(req, res){
-  console.log("blablablablablbalbal");
-  var nomSeance = req.params.nomSeance;
-  var nomProf = req.params.professeurSeance;
-  var nomSalle = req.params.salleSeance;
-//  var nomDuree = req.params.duree;
-  console.log("Nom de la seance : " +  nomSeance);
-  console.log("Nom prof : " +  nomProf);
-  console.log("Nom de la salle : " +  nomSalle);
+  //Met à jour une seance
+  app.put('/Updateseance/:nomSeance/:professeurSeance/:salleSeance', function(req, res){
+    console.log("blablablablablbalbal");
+    var nomSeance = req.params.nomSeance;
+    var nomProf = req.params.professeurSeance;
+    var nomSalle = req.params.salleSeance;
+    //  var nomDuree = req.params.duree;
+    console.log("Nom de la seance : " +  nomSeance);
+    console.log("Nom prof : " +  nomProf);
+    console.log("Nom de la salle : " +  nomSalle);
 
-Seance.findOne({
+    Seance.findOne({
       where: {
         title: nomSeance
       }
@@ -347,190 +289,119 @@ Seance.findOne({
         });
       }
     });
-/*  Seance.update({where : {title: nomSeance}}).then(function(seance){
-    professeur : nomProf
-    salle : nomSalle
-  //  duree : nomDuree
-});*/
-});
-/*var Seance = sequelize.define('Seance', {
-nom: {type: Sequelize.STRING, unique: false},
-dateDebut: {type : Sequelize.STRING},
-dateFin: {type : Sequelize.STRING},
-professeure: {type : Sequelize.STRING},
-salle : {type : Sequelize.STRING},
-duree: {type : Sequelize.FLOAT}
-
-});
-*/
-
-
-/* var Enseignement = sequelize.define('Enseignement', {
-nom: {type: Sequelize.STRING, unique: false},
-typeEnseignement: {type : Sequelize.STRING, allowNull : true},
-dureeEnseignement: {type : Sequelize.FLOAT},
-dureeSeanceEnseignement: {type : Sequelize.FLOAT},
-nombreSeanceParSemaine: {type : Sequelize.FLOAT},
-dateDebut: {type : Sequelize.STRING}
-
-});*/
-
-
-//Création d'une matiere avec le nom passé en parametre
-/*app.post('/creerMatiere', function(req, res){
-var matierePost = Matiere.build({ nom: req.body.nomMatiere});
-console.log(req.body.nomMatiere);
-//filierePost.save().then(function( filierePost){
-console.log("SAUVEGARDE DE : " + matierePost);
-//res.send('Filiere créée !');
-res.redirect('/');
-});*/
-
-app.post('/creerMatiere', function(req, res){
-  console.log(req.body.nomMatiere);
-  console.log(req.body.filiere);
-
-  Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
-    Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
-      console.log(" Good Filiere : " + filiere);
-      return matiere.setFiliere(filiere);
-    });
-    res.redirect('/');
   });
-});
 
-//Supprime une matiere avec le nom donné en parametre
-app.delete('/supprimerMatiere/:Suppmatiere', function(req, res){
-  var nomMatiere = req.params.Suppmatiere;
-  var idMatiere;
-  console.log('MATIERE : ' + nomMatiere + ' avec ID : ' + nomMatiere.id);
+  //Création d'une matiere
+  app.post('/creerMatiere', function(req, res){
+    console.log(req.body.nomMatiere);
+    console.log(req.body.filiere);
 
-
-
-  Matiere.findOne({where:{nom: nomMatiere}}).then(function(matiere){
-    Enseignement.findAll({where:{Matiereid: matiere.id}}).then(function(enseignement){
-      //res.redirect('/');
-
-      console.log('DANS RECHERCHE ENSEIGNEMENT');
-      for(var i = 0; i < enseignement.length; i++){
-        Seance.destroy({
-          where: {
-            EnseignementId : enseignement[i].id,
-          }
-        });
-      }
-    }).then(function(){
-      idMatiere = matiere.id;
-      console.log('ID DE LA MATIERE ' + matiere.id);
-      if(nomMatiere != null){
-        console.log('DANS LA BOUCLE ID MATIERE VAUT : ' + idMatiere);
-        Enseignement.destroy({
-          where: {
-            Matiereid: matiere.id,
-          }
-        }).then(function(){
-          console.log('la matiere : ' + nomMatiere + ' est supprimé de la base de donnée, now removing Enseignement...');
-          //res.redirect('/');
-          Matiere.destroy({
-            where : {
-              nom : nomMatiere,
-            }
-          });
-
-        })
-
-      }
-      else {
-        console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
-        res.redirect('/');
-      }
-
-    })
-  })
-
-
-  //res.redirect('/');
-});
-
-//Supprime une filiere avec le nom donné en parametre
-app.delete('/supprimerfiliere/:Suppfiliere', function(req, res){
-  var nomFiliere = req.params.Suppfiliere;
-  if(nomFiliere != null){
-    Filiere.destroy({
-      where: {
-        nom: nomFiliere,
-      }
-    }).then(function(){
-      console.log('la filiere : ' + nomFiliere + ' est supprimé de la base de donnée');
+    Filiere.findOne({where:{nom: req.body.filiere}}).then(function(filiere){
+      Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
+        console.log(" Good Filiere : " + filiere);
+        return matiere.setFiliere(filiere);
+      });
       res.redirect('/');
     });
-  }
-  else {
-    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomFiliere);
-    res.redirect('/');
-  }
-  //res.redirect('/');
-});
+  });
+
+  //Supprime une matiere avec le nom donné en parametre
+  app.delete('/supprimerMatiere/:Suppmatiere', function(req, res){
+    var nomMatiere = req.params.Suppmatiere;
+    var idMatiere;
+    console.log('MATIERE : ' + nomMatiere + ' avec ID : ' + nomMatiere.id);
 
 
 
-//Supprime un enseignement avec le nom donné en parametre
-app.delete('/supprimerEnseignement/:Suppenseignement', function(req, res){
-  var nomEnseignement = req.params.Suppenseignement;
-  if(nomEnseignement != null){
-    Enseignement.destroy({
-      where: {
-        nom: nomEnseignement,
-      }
-    }).then(function(){
-      console.log('l enseignement : ' + nomEnseignement + ' est supprimé de la base de donnée, now removing SEANCE');
-      //res.redirect('/');
-      Seance.destroy({
-        where: {
-          title : nomEnseignement,
+    Matiere.findOne({where:{nom: nomMatiere}}).then(function(matiere){
+      Enseignement.findAll({where:{Matiereid: matiere.id}}).then(function(enseignement){
+
+        console.log('DANS RECHERCHE ENSEIGNEMENT');
+        for(var i = 0; i < enseignement.length; i++){
+          Seance.destroy({
+            where: {
+              EnseignementId : enseignement[i].id,
+            }
+          });
         }
       }).then(function(){
-        console.log('SEANCE : ' + nomEnseignement + ' Supprimé de la base de donnée')
-        res.redirect('/');
+        idMatiere = matiere.id;
+        console.log('ID DE LA MATIERE ' + matiere.id);
+        if(nomMatiere != null){
+          console.log('DANS LA BOUCLE ID MATIERE VAUT : ' + idMatiere);
+          Enseignement.destroy({
+            where: {
+              Matiereid: matiere.id,
+            }
+          }).then(function(){
+            console.log('la matiere : ' + nomMatiere + ' est supprimé de la base de donnée, now removing Enseignement...');
+            //res.redirect('/');
+            Matiere.destroy({
+              where : {
+                nom : nomMatiere,
+              }
+            });
+
+          })
+
+        }
+        else {
+          console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomMatiere);
+          res.redirect('/');
+        }
+
       })
-    });
-  }
-  else {
-    console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomEnseignement);
-    res.redirect('/');
-  }
-});
+    })
+  });
+
+  //Supprime une filiere avec le nom donné en parametre
+  app.delete('/supprimerfiliere/:Suppfiliere', function(req, res){
+    var nomFiliere = req.params.Suppfiliere;
+    if(nomFiliere != null){
+      Filiere.destroy({
+        where: {
+          nom: nomFiliere,
+        }
+      }).then(function(){
+        console.log('la filiere : ' + nomFiliere + ' est supprimé de la base de donnée');
+        res.redirect('/');
+      });
+    }
+    else {
+      console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomFiliere);
+      res.redirect('/');
+    }
+  });
 
 
 
+  //Supprime un enseignement avec le nom donné en parametre
+  app.delete('/supprimerEnseignement/:Suppenseignement', function(req, res){
+    var nomEnseignement = req.params.Suppenseignement;
+    if(nomEnseignement != null){
+      Enseignement.destroy({
+        where: {
+          nom: nomEnseignement,
+        }
+      }).then(function(){
+        console.log('l enseignement : ' + nomEnseignement + ' est supprimé de la base de donnée, now removing SEANCE');
+        //res.redirect('/');
+        Seance.destroy({
+          where: {
+            title : nomEnseignement,
+          }
+        }).then(function(){
+          console.log('SEANCE : ' + nomEnseignement + ' Supprimé de la base de donnée')
+          res.redirect('/');
+        })
+      });
+    }
+    else {
+      console.log('Le parametre est null, pas de suppresion ! Valeur : ' + nomEnseignement);
+      res.redirect('/');
+    }
+  });
 
-//Matiere.create({nom : req.body.nomMatiere}).then(function (matiere) {
-// return Filiere.create({nom : req.body.filiere}).then(function (filiere) {
-//    var goodFiliere = Filiere.findOne().then(function(filiere){
-//  where: {nom: req.body.filiere}
-
-//console.log(" Good Filiere : " + goodFiliere);
-//  return matiere.setFiliere(goodFiliere);
-// });
-//});
-//res.redirect('/');
-//});
-// Routes
-/*
-app.use( routes.current_user );
-app.get(  '/',            routes.index );
-app.post( '/create',      routes.create );
-app.get(  '/destroy/:id', routes.destroy );
-app.get(  '/edit/:id',    routes.edit );
-app.post( '/update/:id',  routes.update );
-*/
-
-/*
-development only
-if( 'development' == app.get( 'env' )){
-app.use( errorHandler());
-}
-*/
-http.createServer( app ).listen(3000, function (){
-  console.log( 'Express server listening on port 3000 ');
-});
+  http.createServer( app ).listen(3000, function (){
+    console.log( 'Express server listening on port 3000 ');
+  });
