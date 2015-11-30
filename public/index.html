@@ -367,19 +367,13 @@
 				<h4 class="modal-title" id="CreerFiliereNom">Modifier une Séance</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal" method="put">
+				<form class="form-horizontal" method="put" action="javascript:modifierSeance()">
 					<div class="form-group">
 					<div>
 					<label class="col-sm-4 control-label" for="nomSeance">Nom de la séance</label>
 					<div class="col-sm-4">
 					<input type="text" name="nomSeance" id="nomSeance" class="form-control" readonly />
 					</div>
-					</div>
-					</div>
-					<div class="form-group">
-					<label class="col-sm-4 control-label" for="dureeSeance">Durée de la séance</label>
-					<div class="col-sm-4">
-					<input type="time" name="dureeSeance" id="dureeSeance" class="form-control"/>
 					</div>
 					</div>
 					<div class="form-group">
@@ -402,7 +396,6 @@
 					<input type="submit" name="ModifierSeanceName" value="Modifier" class="btn btn-primary" />
 					</div>
 				</form>
-				<input type="submit" id="SupprimerSeance" value="Supprimer" class="btn btn-primary" />
 			  </div>
 			</div>
 		  </div>

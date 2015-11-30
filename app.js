@@ -322,18 +322,36 @@ Seance.findOne({where : { title : nomSeance}}).then(function(seance){
 
 });
 //Met à jour une seance
-app.put('/Updateseance/:nom', function(req, res){
-  var nomSeance = req.params.nom;
-  var nomProf = req.params.professeur;
-  var nomSalle = req.params.salle;
-  var nomDuree = req.params.duree;
-  console.log("Nom de la seance : " +  req.params.nom);
+app.put('/Updateseance/:nomSeance/:professeurSeance/:salleSeance', function(req, res){
+  console.log("blablablablablbalbal");
+  var nomSeance = req.params.nomSeance;
+  var nomProf = req.params.professeurSeance;
+  var nomSalle = req.params.salleSeance;
+//  var nomDuree = req.params.duree;
+  console.log("Nom de la seance : " +  nomSeance);
+  console.log("Nom prof : " +  nomProf);
+  console.log("Nom de la salle : " +  nomSalle);
 
-  Seance.update({where:{nom: nomSeance}}).then(function(seance){
+Seance.findOne({
+      where: {
+        title: nomSeance
+      }
+    }).then(function(seance) {
+      if(seance){
+        seance.updateAttributes({
+          professeur: nomProf,
+          salle: nomSalle
+        }).then(function(seance) {
+          console.log('FINISH UPDATE');
+          res.send(seance);
+        });
+      }
+    });
+/*  Seance.update({where : {title: nomSeance}}).then(function(seance){
     professeur : nomProf
     salle : nomSalle
-    duree : nomDuree
-  });
+  //  duree : nomDuree
+});*/
 });
 /*var Seance = sequelize.define('Seance', {
 nom: {type: Sequelize.STRING, unique: false},
