@@ -27,14 +27,16 @@
                         //   url: rawEventData.url
                        };
                    }*/
-    /*eventRender: function(event){
-      return (event.ranges.filter(function(range){ // test event against all the ranges
+    eventRender: function(event, element, view){
+  //    console.log(event.rangeStart);
+    //  console.log(event.rangeEnd);
+    //  return (event.filter(function(){ // test event against all the ranges
 
-          return (event.start.isBefore(range.end) &&
-                   event.end.isAfter(range.start));
+          return (event.start.isBefore(event.rangeEnd) &&
+                   event.end.isAfter(event.rangeStart));
 
-        }).length)>0; //if it isn't in one of the ranges, don't render it (by returning false)
-      },*/
+      //  }).length)>0; //if it isn't in one of the ranges, don't render it (by returning false)
+      },
 		eventClick: function(calEvent, jsEvent, view) {
 		document.getElementById('nomSeance').placeholder=calEvent.title;
         document.getElementById('LienSeance').click();

@@ -102,8 +102,8 @@ var Seance = sequelize.define('Seance', {
   professeur: {type : Sequelize.STRING},
   salle : {type : Sequelize.STRING},
   dow : { type : Sequelize.STRING},
-  ranges : { type : Sequelize.STRING},
-
+  rangeStart : { type : Sequelize.STRING},
+  rangeEnd : { type : Sequelize.STRING},
   duree: {type : Sequelize.FLOAT}
 
 });
@@ -246,10 +246,10 @@ app.post('/creerEnseignement', function(req, res){
 
 
   console.log('nb semaine :'+nbSemaine);
-  var RangeDateDeb = 'start:"'+dateSplit[0]+'"';
+  var RangeDateDeb = '"'+dateSplit[0]+'"';
 
-  var RangeDateFin = 'end:"'+new_date_text+'"';
-  var Range = "[{"+RangeDateDeb+", "+RangeDateFin+"}]";
+  var RangeDateFin = '"'+new_date_text+'"';
+  //var Range = "[{"+RangeDateDeb+", "+RangeDateFin+"}]";
   console.log(dateFinEnseignement);
   console.log('Matiere selectionné ' + req.body.matiere);
   console.log('Nom de l\'enseignement ' +  req.body.nom_enseignement);
@@ -285,7 +285,7 @@ app.post('/creerEnseignement', function(req, res){
   //  dateFinEnseignement = dateFinEnseignement.getDate()+1;
       //console.log('YOUHOU');
     //console.log('date de fin de seance ' + dateFinEnseignement);
-    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeur : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, ranges : Range})
+    Seance.create({title : nomEnseignement, start : dateDebutEnseignement, end : dateFinEnseignement, professeur : prof, salle : salleSeance, duree : dureeSeance, dow : jourSemaine, rangeStart : RangeDateDeb, rangeEnd : RangeDateFin})
     .then(function(seance){
       console.log("Creation SEANCE ");
       return seance.setEnseignement(enseignement);
